@@ -1,0 +1,20 @@
+{
+  "name": "makestar-admin-ai-toolkit",
+  "interface": {
+    "displayName": "Makestar Admin AI Toolkit"
+  },
+  "plugins": [
+    {
+      "name": "makestar-admin-skills",
+      "source": {
+        "source": "local",
+        "path": "./plugins/makestar-admin-skills"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Operations"
+    }
+  ]
+}

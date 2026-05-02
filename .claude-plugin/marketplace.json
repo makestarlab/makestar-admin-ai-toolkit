@@ -1,0 +1,21 @@
+{
+  "name": "makestar-admin",
+  "description": "Makestar Admin Skills public Claude marketplace from makestar-admin-ai-toolkit.",
+  "owner": {
+    "name": "Makestar"
+  },
+  "plugins": [
+    {
+      "name": "makestar-admin-skills",
+      "source": "./plugins/makestar-admin-skills",
+      "version": "0.2.2",
+      "description": "Makestar admin skills that use the separately installed makestar-admin CLI.",
+      "category": "Operations",
+      "tags": [
+        "makestar-admin",
+        "admin-api",
+        "read-only"
+      ]
+    }
+  ]
+}

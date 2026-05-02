@@ -1,0 +1,36 @@
+{
+  "name": "makestar-admin-skills",
+  "version": "0.2.2",
+  "description": "Makestar admin reusable skill bundle",
+  "author": {
+    "name": "Makestar"
+  },
+  "repository": "https://github.com/makestarlab/makestar-admin-ai-toolkit",
+  "license": "UNLICENSED",
+  "keywords": [
+    "makestar-admin",
+    "read-only",
+    "admin-api",
+    "resource-tooling",
+    "agent-skills"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Makestar Admin Skills",
+    "shortDescription": "Read-only Makestar admin query and resource tooling.",
+    "longDescription": "Makestar admin skills for read-only operational lookups through the makestar-admin CLI/binary: auth token acquisition, browser fallback token recovery, admin resource queries, event-to-SKU resolution, SKU inventory checks, and order detail inspection. Requires fresh Makestar admin bearer tokens and intentionally avoids write operations.",
+    "developerName": "Makestar",
+    "category": "Operations",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "websiteURL": "https://github.com/makestarlab/makestar-admin-ai-toolkit",
+    "defaultPrompt": [
+      "Resolve event code P_10463_PLAVE_1 to product contents, concrete SKU, and inventory.",
+      "Look up SKU021276 stock detail with the Makestar admin resource scripts.",
+      "Inspect order C260419002426520H1 using read-only Makestar admin tooling."
+    ],
+    "screenshots": []
+  }
+}
