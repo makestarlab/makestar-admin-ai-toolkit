@@ -13,9 +13,14 @@ Use this when the user asks to look something up in Makestar admin/OMS without c
 This is the thin operator-facing layer built on top of the broader `makestar-admin-resource-scripts` skill.
 
 ## CLI preflight
-- First check whether the separately installed CLI is available: `makestar-admin --version`.
-- If missing, guide the user to install it: macOS `brew install makestarlab/tap/makestar-admin-cli`; Windows `winget install Makestar.MakestarAdminCLI`; otherwise use the public release MSI/archive.
-- Installed skills/plugins do not bundle the CLI binary. Do not require a source checkout, `.venv`, `uv`, `PYTHONPATH`, or Python module fallback from an installed skill/plugin bundle.
+<!-- managed:cli-preflight -->
+Required: `makestar-admin` >=0.2.3.
+Before the first CLI-dependent action, run `makestar-admin --version`, compare it with the required range, then print exactly one status line:
+- `CLI update required` — if the CLI is missing, older than the minimum, or outside the supported range. Show the documented install path that can provide the required version for this platform, such as macOS `brew install makestarlab/tap/makestar-admin-cli`, Windows `winget install Makestar.MakestarAdminCLI` when current enough, or the public release MSI/archive; then stop until the user updates.
+- `skill/plugin update required` — if the installed CLI is newer than this skill bundle supports and a newer skill bundle is available. Do not downgrade silently.
+- `check auth/setup` — only when the CLI is in range; then run `makestar-admin auth status` if the action still fails.
+Installed skills/plugins do not bundle the CLI binary. Do not require source-checkout or Python-module fallback commands from an installed skill/plugin bundle.
+<!-- /managed:cli-preflight -->
 
 ## Use when
 - The user wants to find a B2B 업체, member, order activity, or deposit log.
