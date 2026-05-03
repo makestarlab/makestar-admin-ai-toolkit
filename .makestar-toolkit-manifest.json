@@ -4,37 +4,37 @@
   "files": [
     {
       "path": ".agents/plugins/marketplace.json",
-      "sha256": "3612cf522f83d1e86f5b7166c0c72f6892b58b469ab6d0cfab546dfe0d7c9f68",
+      "sha256": "d0e95a5dfa9f2a7ed7d90cc0c8f9377fb80ffa5704bae972c0c0fb1f9e850d3b",
       "size_bytes": 492
     },
     {
       "path": ".claude-plugin/marketplace.json",
-      "sha256": "6c15267824a06bfa751df9bf26b343f7170459870518888cacd5b6d894823cec",
+      "sha256": "e84e8383479018efdd0763f9dab37424fee0c9fc1fafd031da1a554055fb7a5c",
       "size_bytes": 543
     },
     {
       "path": "PUBLISH_PROVENANCE.json",
-      "sha256": "39858bd50909e012552cad4baaca60c6ac2e43c93bb736745f629062d6891ee2",
+      "sha256": "0a390d73357b2330a88c8dceeed0efcd4706353a933ea2b1d896d86ac95a30a0",
       "size_bytes": 3939
     },
     {
       "path": "README.md",
-      "sha256": "fd0d2b8ff0509d78a79325d04821f27c26a7d4edc68f536d5a871fefed7d6b7a",
+      "sha256": "84f3b26fea29a90edb98262dc47cf6335ade02f1b39bed5c72ad59c878606cfd",
       "size_bytes": 1015
     },
     {
       "path": "plugins/makestar-admin-skills/.claude-plugin/plugin.json",
-      "sha256": "67ea301666df3bf07b5f4e3f9d551739de1b882829d229ca747487a1e726cbad",
+      "sha256": "e8f0f45678cce3ff4be9cc58d5382c5ab427ddc0252faadcd2b1570349acc3d5",
       "size_bytes": 520
     },
     {
       "path": "plugins/makestar-admin-skills/.codex-plugin/plugin.json",
-      "sha256": "e21a5d5fb7c3cd33129fca1726189fb712ed9d222700e94467144c79fef60d6d",
+      "sha256": "9e45f963f031e0a61ae96404d01ddb07f9ea9bd56ceb12f716b5ef9a4dd0072c",
       "size_bytes": 1473
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-auth-token/SKILL.md",
-      "sha256": "f065790c9bdaa0744895d45c838a9932cb4f0981df0ff0c1dc85d68531f23730",
+      "sha256": "fb429c0a9da333d55778ba7f855e613913998d871836a6154991952f6edca328",
       "size_bytes": 4357
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-browser-token/SKILL.md",
-      "sha256": "c774908a8c5f9319a9d402c530c31ea8cad265a323f4020b9db4f2ef7becf469",
+      "sha256": "0cb269cdda05540aa60e1c7e14e6c03d402a6cc71173963d3b80ef950d3bb5a6",
       "size_bytes": 3150
     },
     {
@@ -54,7 +54,7 @@
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-event-resolution/SKILL.md",
-      "sha256": "9ae354ecb817c2482d45c699900cbbc7cdac10a5d7f5932e24b07a76caf665c7",
+      "sha256": "811b76b871341774140eede3f60fa1e8cb2b1bf4b87c4e87107df198bf1b7e24",
       "size_bytes": 2002
     },
     {
@@ -64,7 +64,7 @@
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-resource-scripts/SKILL.md",
-      "sha256": "526b19010080599ed9542d5b8caf0d47941096c7788515a9d37d528d10273ee1",
+      "sha256": "5047a3bc933a1714df1511ac12e85b4df8809a3c514919e8515e10c929979ea0",
       "size_bytes": 9810
     },
     {
@@ -79,7 +79,7 @@
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-read-only-query/SKILL.md",
-      "sha256": "103098d1e8eb827a26488ab89b1e6e68e1515eb42154652acde740ee3ca2deef",
+      "sha256": "43f9166039b1bc62a5736a32684c4583666f16babb4cab2e5b4b2031787d2a56",
       "size_bytes": 7742
     },
     {

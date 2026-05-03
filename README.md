@@ -31,4 +31,4 @@ codex
 
 ## Generated version
 
-`0.2.5`
+`0.2.6`
