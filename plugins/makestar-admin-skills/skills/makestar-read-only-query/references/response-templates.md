@@ -61,6 +61,11 @@ Use these as operator-style answer templates after running the verified scripts.
 - `paymentStatus`, `recipientName`, `shippingStatus` 같은 visible fields를 우선한다.
 - `총 N건`이라고 쓸 때는 global total인지 current page row count인지 구분해서 적는다.
 
+### 주문 상세 Notes
+- `makestar-admin orders detail <order_no>` 결과를 요약할 때는 header/payment만 쓰고 끝내지 말고 ordered item row도 포함한다.
+- ordered item마다 최소 `eventCode`, `productTitle`, `optionName`, `orderQuantity`를 표시한다. 이 필드들은 event/SKU contract regression anchor로 쓰인다.
+- PII가 포함될 수 있으므로 이름/email/phone/address는 사용자가 명시적으로 요구하지 않으면 `[REDACTED]` 또는 최소화해서 요약한다.
+
 ## 3) 발주 조회
 
 ### Trigger

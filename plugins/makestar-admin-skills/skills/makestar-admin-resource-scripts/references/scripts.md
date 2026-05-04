@@ -1,8 +1,3 @@
-Canonical sources:
-- `core/procedures/makestar-admin-resource-scripts.md`
-- `core/references/script-catalog.md`
-- `core/references/env-vars.md`
-
 Usage pattern notes:
 - Start from the question pattern examples in `SKILL.md` or `references/question-patterns.md`.
 - As of the 2026-04-18 CLI help audit, the documented examples for grade filtering, order event-code filtering, and B2B order filtering are aligned to actual script flags.

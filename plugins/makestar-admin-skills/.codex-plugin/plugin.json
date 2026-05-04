@@ -1,6 +1,6 @@
 {
   "name": "makestar-admin-skills",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Makestar admin reusable skill bundle",
   "supported_cli_requirement": ">=0.2.4",
   "author": {
