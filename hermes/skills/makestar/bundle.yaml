@@ -1,0 +1,9 @@
+category: makestar
+version: 0.2.7
+supported_cli_requirement: ">=0.2.4"
+skills:
+  - makestar-admin-auth-token
+  - makestar-admin-browser-token
+  - makestar-admin-resource-scripts
+  - makestar-admin-event-resolution
+  - makestar-read-only-query

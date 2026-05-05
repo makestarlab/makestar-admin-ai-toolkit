@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "generated_by": "scripts/install/export_ai_toolkit.py",
+  "version": "0.2.7",
+  "status_taxonomy": {
+    "marketplace-local-validation": "Generated marketplace files pass local export validation; runtime/manual evidence is tracked separately.",
+    "manual-evidence-required": "Generated artifacts are present, but publish-ready status requires explicit validation evidence.",
+    "experimental": "Documented but not release-gated for supported public use.",
+    "withheld": "Generated artifacts are not published or public support is intentionally withheld.",
+    "pre-validation": "Generated artifacts are present, but public install support is withheld until install-smoke validation promotes the status.",
+    "install-supported": "Reserved for a later milestone with safe installer entrypoints and install-smoke evidence.",
+    "supported": "Reserved for a later milestone with runtime validation evidence."
+  },
+  "tools": {
+    "claude": {
+      "artifact_paths": [
+        ".claude-plugin/",
+        "plugins/makestar-admin-skills/"
+      ],
+      "artifact_surface": "marketplace-plugin",
+      "support_status": "marketplace-local-validation",
+      "install_command_status": "available"
+    },
+    "codex": {
+      "artifact_paths": [
+        ".agents/",
+        "plugins/makestar-admin-skills/"
+      ],
+      "artifact_surface": "marketplace-plugin",
+      "support_status": "manual-evidence-required",
+      "install_command_status": "available"
+    },
+    "hermes": {
+      "artifact_paths": [
+        "hermes/skills/makestar/"
+      ],
+      "installer_paths": [
+        "installers/hermes/install.py"
+      ],
+      "artifact_surface": "skills",
+      "support_status": "pre-validation",
+      "install_command_status": "entrypoint-available-command-withheld"
+    },
+    "opencode": {
+      "artifact_paths": [
+        "opencode/.opencode/skills/",
+        "opencode/ai-guides/opencode/"
+      ],
+      "installer_paths": [
+        "installers/opencode/install.py"
+      ],
+      "artifact_surface": "skills-first",
+      "support_status": "pre-validation",
+      "install_command_status": "entrypoint-available-command-withheld"
+    }
+  }
+}
