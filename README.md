@@ -35,18 +35,14 @@ Generated Hermes skills are exported under `hermes/skills/makestar/`.
 
 Current status: `install-supported`.
 
-Reviewable remote install from the release zip:
+Install from a local clone of this public toolkit repository:
 
 ```bash
-VERSION=v0.2.7
-ASSET=makestar-admin-ai-toolkit-v0.2.7.zip
-EXPECTED_SHA256=<copy from the GitHub release asset digest>
 WORKDIR="$(mktemp -d)"
-curl -fL "https://github.com/makestarlab/makestar-admin-ai-toolkit/releases/download/${VERSION}/${ASSET}" -o "${WORKDIR}/${ASSET}"
-printf '%s  %s\n' "${EXPECTED_SHA256}" "${WORKDIR}/${ASSET}" | shasum -a 256 -c -
-unzip -q "${WORKDIR}/${ASSET}" -d "${WORKDIR}/toolkit"
-python "${WORKDIR}/toolkit/installers/hermes/install.py" --source-root "${WORKDIR}/toolkit/hermes/skills/makestar" --target "$HOME/.hermes/skills/makestar" --dry-run
-python "${WORKDIR}/toolkit/installers/hermes/install.py" --source-root "${WORKDIR}/toolkit/hermes/skills/makestar" --target "$HOME/.hermes/skills/makestar" --backup
+git clone --depth 1 --branch v0.2.7 https://github.com/makestarlab/makestar-admin-ai-toolkit.git "${WORKDIR}/makestar-admin-ai-toolkit"
+cd "${WORKDIR}/makestar-admin-ai-toolkit"
+python installers/hermes/install.py --dry-run
+python installers/hermes/install.py --backup
 ```
 
 ## OpenCode artifact status
@@ -55,18 +51,15 @@ Generated OpenCode skills are exported under `opencode/.opencode/skills/`. Optio
 
 Current status: `install-supported`.
 
-Reviewable remote install from the release zip into the current project:
+Install from a local clone of this public toolkit repository into the current project:
 
 ```bash
-VERSION=v0.2.7
-ASSET=makestar-admin-ai-toolkit-v0.2.7.zip
-EXPECTED_SHA256=<copy from the GitHub release asset digest>
 WORKDIR="$(mktemp -d)"
-curl -fL "https://github.com/makestarlab/makestar-admin-ai-toolkit/releases/download/${VERSION}/${ASSET}" -o "${WORKDIR}/${ASSET}"
-printf '%s  %s\n' "${EXPECTED_SHA256}" "${WORKDIR}/${ASSET}" | shasum -a 256 -c -
-unzip -q "${WORKDIR}/${ASSET}" -d "${WORKDIR}/toolkit"
-python "${WORKDIR}/toolkit/installers/opencode/install.py" --source-root "${WORKDIR}/toolkit/opencode/.opencode/skills" --project-root "$PWD" --dry-run
-python "${WORKDIR}/toolkit/installers/opencode/install.py" --source-root "${WORKDIR}/toolkit/opencode/.opencode/skills" --project-root "$PWD" --backup
+PROJECT_ROOT="$PWD"
+git clone --depth 1 --branch v0.2.7 https://github.com/makestarlab/makestar-admin-ai-toolkit.git "${WORKDIR}/makestar-admin-ai-toolkit"
+cd "${WORKDIR}/makestar-admin-ai-toolkit"
+python installers/opencode/install.py --project-root "${PROJECT_ROOT}" --dry-run
+python installers/opencode/install.py --project-root "${PROJECT_ROOT}" --backup
 ```
 
 ## Generated version
