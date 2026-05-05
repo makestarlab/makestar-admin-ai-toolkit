@@ -14,8 +14,8 @@
     },
     {
       "path": "PUBLISH_PROVENANCE.json",
-      "sha256": "d137a6eacd30c091764ce7b0d033c8f7669ab1cf464cd9dd675c7801e5b8a86c",
-      "size_bytes": 12210
+      "sha256": "c5520fc89b0fed3d35567a199e2bf52c0527451a61bd85d2076987916e202e4a",
+      "size_bytes": 12216
     },
     {
       "path": "README.md",
@@ -24,8 +24,8 @@
     },
     {
       "path": "TOOL_SUPPORT_STATUS.json",
-      "sha256": "46b85177934ab8c4ba0b8ecd93ef116099cba9e204b7fb45be5c15462043d5e1",
-      "size_bytes": 2186
+      "sha256": "949a71f3dc9eccb41a294c14e25f22a43a492da1846a89076e10e655e213bd81",
+      "size_bytes": 2192
     },
     {
       "path": "hermes/skills/makestar/bundle.yaml",
