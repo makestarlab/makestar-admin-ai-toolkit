@@ -44,6 +44,8 @@ python installers/hermes/install.py --dry-run
 python installers/hermes/install.py --backup
 ```
 
+`--backup` stores replaced skills under `~/.hermes/skills-backup/` before installing the new copies.
+
 ## OpenCode artifact status
 
 Generated OpenCode skills are exported under `opencode/.opencode/skills/`. Optional OpenCode guide/prompt convenience assets may also be present under `opencode/ai-guides/opencode/`, but skills remain the primary installable surface.
@@ -58,6 +60,8 @@ cd makestar-admin-ai-toolkit
 python installers/opencode/install.py --project-root /path/to/your/project --dry-run
 python installers/opencode/install.py --project-root /path/to/your/project --backup
 ```
+
+`--backup` stores replaced skills under `<project>/.opencode/skills-backup/` before installing the new copies.
 
 ## Generated version
 
