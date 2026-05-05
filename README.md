@@ -31,17 +31,43 @@ codex
 
 ## Hermes artifact status
 
-Generated Hermes skills are exported under `hermes/skills/makestar/` for the public-install milestone. Public README/bootstrap installer commands are intentionally pending until install-smoke evidence is added.
+Generated Hermes skills are exported under `hermes/skills/makestar/`.
 
-Current status: `pre-validation`.
+Current status: `install-supported`.
+
+Reviewable remote install from the release zip:
+
+```bash
+VERSION=v0.2.7
+ASSET=makestar-admin-ai-toolkit-v0.2.7.zip
+EXPECTED_SHA256=<copy from the GitHub release asset digest>
+WORKDIR="$(mktemp -d)"
+curl -fL "https://github.com/makestarlab/makestar-admin-ai-toolkit/releases/download/${VERSION}/${ASSET}" -o "${WORKDIR}/${ASSET}"
+printf '%s  %s\n' "${EXPECTED_SHA256}" "${WORKDIR}/${ASSET}" | shasum -a 256 -c -
+unzip -q "${WORKDIR}/${ASSET}" -d "${WORKDIR}/toolkit"
+python "${WORKDIR}/toolkit/installers/hermes/install.py" --source-root "${WORKDIR}/toolkit/hermes/skills/makestar" --target "$HOME/.hermes/skills/makestar" --dry-run
+python "${WORKDIR}/toolkit/installers/hermes/install.py" --source-root "${WORKDIR}/toolkit/hermes/skills/makestar" --target "$HOME/.hermes/skills/makestar" --backup
+```
 
 ## OpenCode artifact status
 
 Generated OpenCode skills are exported under `opencode/.opencode/skills/`. Optional OpenCode guide/prompt convenience assets may also be present under `opencode/ai-guides/opencode/`, but skills remain the primary installable surface.
 
-Public README/bootstrap installer commands are intentionally pending until install-smoke evidence is added.
+Current status: `install-supported`.
 
-Current status: `pre-validation`.
+Reviewable remote install from the release zip into the current project:
+
+```bash
+VERSION=v0.2.7
+ASSET=makestar-admin-ai-toolkit-v0.2.7.zip
+EXPECTED_SHA256=<copy from the GitHub release asset digest>
+WORKDIR="$(mktemp -d)"
+curl -fL "https://github.com/makestarlab/makestar-admin-ai-toolkit/releases/download/${VERSION}/${ASSET}" -o "${WORKDIR}/${ASSET}"
+printf '%s  %s\n' "${EXPECTED_SHA256}" "${WORKDIR}/${ASSET}" | shasum -a 256 -c -
+unzip -q "${WORKDIR}/${ASSET}" -d "${WORKDIR}/toolkit"
+python "${WORKDIR}/toolkit/installers/opencode/install.py" --source-root "${WORKDIR}/toolkit/opencode/.opencode/skills" --project-root "$PWD" --dry-run
+python "${WORKDIR}/toolkit/installers/opencode/install.py" --source-root "${WORKDIR}/toolkit/opencode/.opencode/skills" --project-root "$PWD" --backup
+```
 
 ## Generated version
 
