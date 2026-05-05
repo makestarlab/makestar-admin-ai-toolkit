@@ -38,9 +38,8 @@ Current status: `install-supported`.
 Install from a local clone of this public toolkit repository:
 
 ```bash
-WORKDIR="$(mktemp -d)"
-git clone --depth 1 --branch v0.2.7 https://github.com/makestarlab/makestar-admin-ai-toolkit.git "${WORKDIR}/makestar-admin-ai-toolkit"
-cd "${WORKDIR}/makestar-admin-ai-toolkit"
+git clone https://github.com/makestarlab/makestar-admin-ai-toolkit.git
+cd makestar-admin-ai-toolkit
 python installers/hermes/install.py --dry-run
 python installers/hermes/install.py --backup
 ```
@@ -54,12 +53,10 @@ Current status: `install-supported`.
 Install from a local clone of this public toolkit repository into the current project:
 
 ```bash
-WORKDIR="$(mktemp -d)"
-PROJECT_ROOT="$PWD"
-git clone --depth 1 --branch v0.2.7 https://github.com/makestarlab/makestar-admin-ai-toolkit.git "${WORKDIR}/makestar-admin-ai-toolkit"
-cd "${WORKDIR}/makestar-admin-ai-toolkit"
-python installers/opencode/install.py --project-root "${PROJECT_ROOT}" --dry-run
-python installers/opencode/install.py --project-root "${PROJECT_ROOT}" --backup
+git clone https://github.com/makestarlab/makestar-admin-ai-toolkit.git
+cd makestar-admin-ai-toolkit
+python installers/opencode/install.py --project-root /path/to/your/project --dry-run
+python installers/opencode/install.py --project-root /path/to/your/project --backup
 ```
 
 ## Generated version
