@@ -1,7 +1,7 @@
 # Optional Makestar guides for OpenCode
 
 <!-- managed:supported_cli_requirement -->
-> Requires `makestar-admin` >=0.2.4. Run `makestar-admin --version` before CLI-dependent actions.
+> Requires `makestar-admin` >=0.2.6. Run `makestar-admin --version` before CLI-dependent actions.
 <!-- /managed:supported_cli_requirement -->
 
 Primary install surface: generated OpenCode skills under `.opencode/skills/<skill>/SKILL.md`.

@@ -1,40 +1,40 @@
 {
   "schema_version": 1,
   "source_repo": "makestarlab/makestar-admin-contracts",
-  "source_commit": "bbd8bac7788fef1cccb7061403a4b091733a0112",
-  "source_workflow_run": "manual-local-2026-05-05-bbd8bac7788fef1cccb7061403a4b091733a0112",
-  "version": "0.2.7",
-  "export_timestamp": "2026-05-05T07:51:21.527739+00:00",
+  "source_commit": "d40d63c97eab8960032f3479d686dfbb9e0b2811",
+  "source_workflow_run": "https://github.com/makestarlab/makestar-admin-contracts/actions/runs/25724138093",
+  "version": "0.2.8",
+  "export_timestamp": "2026-05-13T05:24:48.157175+00:00",
   "artifact_count": 51,
   "artifact_digests": [
     {
       "path": ".agents/plugins/marketplace.json",
-      "sha256": "11df1566ccf7d249c0611780afc92e245d2289f21ea782459710e7f86cb78a1c",
+      "sha256": "05e8130aac0ec89c5d7dece6f9d54920204e3aebbc3cf3f3e963896a5bb8149b",
       "size_bytes": 492
     },
     {
       "path": ".claude-plugin/marketplace.json",
-      "sha256": "03195a16c9ce3b093191da912617888f9073591f46880d069f5efbe25a644e85",
+      "sha256": "9ec29bd1b54d55bd34fe82aa8c6cf6506016b155ed7315176bdd1d2fc294705b",
       "size_bytes": 543
     },
     {
       "path": "README.md",
-      "sha256": "708c9de6af1b9a3f62c607667d7198656a18cd317debc449852dc8c2f941a615",
-      "size_bytes": 2352
+      "sha256": "9ea8b9a84012e0ee160901545aa7c1e1450ad609dbd5ad44e780c669d860f0c8",
+      "size_bytes": 2346
     },
     {
       "path": "TOOL_SUPPORT_STATUS.json",
-      "sha256": "949a71f3dc9eccb41a294c14e25f22a43a492da1846a89076e10e655e213bd81",
-      "size_bytes": 2192
+      "sha256": "0a13b183e1af2a612997af3f9aa664113c5a145b1c251b6ec9738928b6c5defd",
+      "size_bytes": 2186
     },
     {
       "path": "hermes/skills/makestar/bundle.yaml",
-      "sha256": "6aff930c2425d5b32fb35f36383025542fdeccf69f1ebc16811ecb3f2209e483",
+      "sha256": "418974644ed99c19819f0d3d612a72d82951847bce14090f65ed7a2c7037ef3c",
       "size_bytes": 243
     },
     {
       "path": "hermes/skills/makestar/makestar-admin-auth-token/SKILL.md",
-      "sha256": "d51f5193c7ba37abcec04287d070931c80a9b75d8229d5cb9c1cdf53cd8c6de5",
+      "sha256": "8e1f5e7ccd8b087cbeb5e68d365543c19e444bc2353a04bd588b57c8f9b3346c",
       "size_bytes": 4131
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "path": "hermes/skills/makestar/makestar-admin-browser-token/SKILL.md",
-      "sha256": "0cb269cdda05540aa60e1c7e14e6c03d402a6cc71173963d3b80ef950d3bb5a6",
+      "sha256": "7b41a18de7c37863fab682071f88b660d0dc0954bf643bbae634ea355fb3cc88",
       "size_bytes": 3150
     },
     {
@@ -54,7 +54,7 @@
     },
     {
       "path": "hermes/skills/makestar/makestar-admin-event-resolution/SKILL.md",
-      "sha256": "811b76b871341774140eede3f60fa1e8cb2b1bf4b87c4e87107df198bf1b7e24",
+      "sha256": "eac23d0b2764918d1ab423f42de65f48699d7f6b4bf92ea2ff1e001929ba22e9",
       "size_bytes": 2002
     },
     {
@@ -64,7 +64,7 @@
     },
     {
       "path": "hermes/skills/makestar/makestar-admin-resource-scripts/SKILL.md",
-      "sha256": "8e07c4da4b7f6e35bf02987f45f15b2a512ac283a8f3b26988bba7d45c7c1dba",
+      "sha256": "208213c13adce183630e8b95d564ec95a96f4008d27e35e48a01fea6dc878cd1",
       "size_bytes": 9296
     },
     {
@@ -79,7 +79,7 @@
     },
     {
       "path": "hermes/skills/makestar/makestar-read-only-query/SKILL.md",
-      "sha256": "43f9166039b1bc62a5736a32684c4583666f16babb4cab2e5b4b2031787d2a56",
+      "sha256": "3c3540984b22e66aff868bee42a045189b320da8fdc95805995537d080676575",
       "size_bytes": 7742
     },
     {
@@ -104,7 +104,7 @@
     },
     {
       "path": "opencode/.opencode/skills/makestar-admin-auth-token/SKILL.md",
-      "sha256": "d51f5193c7ba37abcec04287d070931c80a9b75d8229d5cb9c1cdf53cd8c6de5",
+      "sha256": "8e1f5e7ccd8b087cbeb5e68d365543c19e444bc2353a04bd588b57c8f9b3346c",
       "size_bytes": 4131
     },
     {
@@ -114,7 +114,7 @@
     },
     {
       "path": "opencode/.opencode/skills/makestar-admin-browser-token/SKILL.md",
-      "sha256": "0cb269cdda05540aa60e1c7e14e6c03d402a6cc71173963d3b80ef950d3bb5a6",
+      "sha256": "7b41a18de7c37863fab682071f88b660d0dc0954bf643bbae634ea355fb3cc88",
       "size_bytes": 3150
     },
     {
@@ -124,7 +124,7 @@
     },
     {
       "path": "opencode/.opencode/skills/makestar-admin-event-resolution/SKILL.md",
-      "sha256": "811b76b871341774140eede3f60fa1e8cb2b1bf4b87c4e87107df198bf1b7e24",
+      "sha256": "eac23d0b2764918d1ab423f42de65f48699d7f6b4bf92ea2ff1e001929ba22e9",
       "size_bytes": 2002
     },
     {
@@ -134,7 +134,7 @@
     },
     {
       "path": "opencode/.opencode/skills/makestar-admin-resource-scripts/SKILL.md",
-      "sha256": "8e07c4da4b7f6e35bf02987f45f15b2a512ac283a8f3b26988bba7d45c7c1dba",
+      "sha256": "208213c13adce183630e8b95d564ec95a96f4008d27e35e48a01fea6dc878cd1",
       "size_bytes": 9296
     },
     {
@@ -149,7 +149,7 @@
     },
     {
       "path": "opencode/.opencode/skills/makestar-read-only-query/SKILL.md",
-      "sha256": "43f9166039b1bc62a5736a32684c4583666f16babb4cab2e5b4b2031787d2a56",
+      "sha256": "3c3540984b22e66aff868bee42a045189b320da8fdc95805995537d080676575",
       "size_bytes": 7742
     },
     {
@@ -164,7 +164,7 @@
     },
     {
       "path": "opencode/ai-guides/opencode/opencode-usage.md",
-      "sha256": "a31c17d235c293bf908c0856294afe1e71b59142c60191900c0ae4b6b664d7cb",
+      "sha256": "9623c4b1d57d532a4ccb82eadd2d24330aed5f2e2205d9bee990d9f36cf72fee",
       "size_bytes": 897
     },
     {
@@ -194,17 +194,17 @@
     },
     {
       "path": "plugins/makestar-admin-skills/.claude-plugin/plugin.json",
-      "sha256": "a8b5f815fe067086b3bfdc2c7cdf2de4ae4c19949fe077625e5c79330e216d01",
+      "sha256": "bc2a875dc8ba73a71724da600309ccbcaef2e4da408392baab70ff20c484660e",
       "size_bytes": 520
     },
     {
       "path": "plugins/makestar-admin-skills/.codex-plugin/plugin.json",
-      "sha256": "dc60e8dd699dcfc350b3293ab6e6b3adc2a5388a24a1fe9e079b9367a1421d12",
+      "sha256": "ab5c07264d0530fe35e1f1f259e2a80274331f2dd113cf6057dfe3927056ef2c",
       "size_bytes": 1473
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-auth-token/SKILL.md",
-      "sha256": "d51f5193c7ba37abcec04287d070931c80a9b75d8229d5cb9c1cdf53cd8c6de5",
+      "sha256": "8e1f5e7ccd8b087cbeb5e68d365543c19e444bc2353a04bd588b57c8f9b3346c",
       "size_bytes": 4131
     },
     {
@@ -214,7 +214,7 @@
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-browser-token/SKILL.md",
-      "sha256": "0cb269cdda05540aa60e1c7e14e6c03d402a6cc71173963d3b80ef950d3bb5a6",
+      "sha256": "7b41a18de7c37863fab682071f88b660d0dc0954bf643bbae634ea355fb3cc88",
       "size_bytes": 3150
     },
     {
@@ -224,7 +224,7 @@
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-event-resolution/SKILL.md",
-      "sha256": "811b76b871341774140eede3f60fa1e8cb2b1bf4b87c4e87107df198bf1b7e24",
+      "sha256": "eac23d0b2764918d1ab423f42de65f48699d7f6b4bf92ea2ff1e001929ba22e9",
       "size_bytes": 2002
     },
     {
@@ -234,7 +234,7 @@
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-resource-scripts/SKILL.md",
-      "sha256": "8e07c4da4b7f6e35bf02987f45f15b2a512ac283a8f3b26988bba7d45c7c1dba",
+      "sha256": "208213c13adce183630e8b95d564ec95a96f4008d27e35e48a01fea6dc878cd1",
       "size_bytes": 9296
     },
     {
@@ -249,7 +249,7 @@
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-read-only-query/SKILL.md",
-      "sha256": "43f9166039b1bc62a5736a32684c4583666f16babb4cab2e5b4b2031787d2a56",
+      "sha256": "3c3540984b22e66aff868bee42a045189b320da8fdc95805995537d080676575",
       "size_bytes": 7742
     },
     {
@@ -292,7 +292,7 @@
         "installers/hermes/install.py"
       ],
       "artifact_surface": "skills",
-      "support_status": "install-supported",
+      "support_status": "pre-validation",
       "install_command_status": "entrypoint-available-command-withheld"
     },
     "opencode": {
@@ -304,7 +304,7 @@
         "installers/opencode/install.py"
       ],
       "artifact_surface": "skills-first",
-      "support_status": "install-supported",
+      "support_status": "pre-validation",
       "install_command_status": "entrypoint-available-command-withheld"
     }
   }

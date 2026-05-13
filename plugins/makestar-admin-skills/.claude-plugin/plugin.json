@@ -1,6 +1,6 @@
 {
   "name": "makestar-admin-skills",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Makestar admin skills that use the separately installed makestar-admin CLI.",
   "author": {
     "name": "Makestar"
