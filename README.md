@@ -21,6 +21,23 @@ claude plugin marketplace add makestarlab/makestar-admin-ai-toolkit
 claude plugin install makestar-admin-skills@makestar-admin
 ```
 
+Add the marketplace without a release tag or `@<ref>`. The unpinned command
+above is the expected install path for future updates. Claude Desktop/Claude
+Code can still show a stale version if its local marketplace or Desktop session
+cache has not refreshed after a release.
+
+If Claude still shows an older version after a release, refresh the marketplace
+cache and update the installed plugin:
+
+```bash
+claude plugin marketplace remove makestar-admin
+claude plugin marketplace add makestarlab/makestar-admin-ai-toolkit
+claude plugin marketplace update makestar-admin
+claude plugin update makestar-admin-skills@makestar-admin
+```
+
+Restart Claude Desktop after updating so the refreshed plugin cache is loaded.
+
 ## Codex marketplace shape
 
 ```bash

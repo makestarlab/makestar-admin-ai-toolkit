@@ -14,13 +14,13 @@
     },
     {
       "path": "PUBLISH_PROVENANCE.json",
-      "sha256": "879352f261abe2798693d6f8ffa8adf8822a84ca80ecd381c9067c9cf72bee7c",
+      "sha256": "4788849d0a013a538d918814dfd0b98a5920f034debe1455a4e2e94fde976ad6",
       "size_bytes": 12226
     },
     {
       "path": "README.md",
-      "sha256": "2edc4101100223e22cd486f279b4d0f856ba8e1a17774e9e319a8044d23025c2",
-      "size_bytes": 2346
+      "sha256": "69968638cc1725615f3cfa5bc5ae2490eed3a2cf8d17197b3868e9b90b0e5137",
+      "size_bytes": 3056
     },
     {
       "path": "TOOL_SUPPORT_STATUS.json",
