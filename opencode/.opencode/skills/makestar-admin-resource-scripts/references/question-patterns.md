@@ -211,6 +211,15 @@ Use this as a fast routing sheet for read-only Makestar admin queries.
 - Expected output:
   - latest displayed event rows
 
+### 판매 종료일 기준 상품/이벤트 검색
+- Question:
+  - `2026-05-17에 판매 종료되는 상품 보여줘`
+- Command:
+  - `makestar-admin product-events latest --period-type sales_end_at --end-date 2026-05-17 --size 10`
+- Expected output:
+  - product/event rows whose selected period filter matches the requested KST date
+  - use `sales_end_at`, not the API-invalid camelCase value `salesEnd`
+
 ### 이벤트 코드 조회
 - Question:
   - `이벤트 코드로 조회해줘`

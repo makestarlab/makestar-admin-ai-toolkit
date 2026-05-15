@@ -107,6 +107,10 @@ These commands were chosen to match the actual current script CLI surface.
 - 최신 이벤트 목록
   - question: `최신 이벤트 목록 보여줘`
   - command: `makestar-admin product-events latest --display-status displayed --size 10`
+- 판매 종료일 기준 상품/이벤트 검색
+  - question: `2026-05-17에 판매 종료되는 상품 보여줘`
+  - command: `makestar-admin product-events latest --period-type sales_end_at --end-date 2026-05-17 --size 10`
+  - note: `period_type` is an API contract value. Use `sales_end_at`; do not use the UI/model camelCase key `salesEnd`.
 - 이벤트 코드 조회
   - question: `이벤트 코드로 조회해줘`
   - command: `makestar-admin product-events list-by-code --code <event_code>`

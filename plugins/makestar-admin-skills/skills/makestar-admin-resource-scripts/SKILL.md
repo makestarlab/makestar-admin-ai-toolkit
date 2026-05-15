@@ -133,6 +133,9 @@ Installed skills/plugins do not bundle the CLI binary. Do not require source-che
   - `makestar-admin skus stock-detail SKU022138`
 - "최신 이벤트 목록"
   - `makestar-admin product-events latest --display-status displayed --size 10`
+- "2026-05-17에 판매 종료되는 상품/이벤트 검색"
+  - `makestar-admin product-events latest --period-type sales_end_at --end-date 2026-05-17 --size 10`
+  - `period_type` must use API contract snake_case values (`all`, `created_at`, `sales_start_at`, `sales_end_at`); do not pass camelCase UI/model keys such as `salesEnd`.
 - "이벤트 코드로 조회"
   - `makestar-admin product-events list-by-code --code <event_code>`
 - "이벤트 상세"

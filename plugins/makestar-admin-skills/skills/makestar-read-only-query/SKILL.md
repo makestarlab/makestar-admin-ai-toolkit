@@ -111,6 +111,7 @@ Installed skills/plugins do not bundle the CLI binary. Do not require source-che
   - `makestar-admin skus search --vendor-id <vendor_id> --size 10`
   - `makestar-admin skus stock-detail <sku_code>`
   - `makestar-admin product-events latest --display-status displayed --size 10`
+  - `makestar-admin product-events latest --period-type sales_end_at --end-date 2026-05-17 --size 10`
   - `makestar-admin product-events list-by-code --code <event_code>`
   - `makestar-admin product-events detail <event_id>`
   - `makestar-admin product-contents list <product_id>`
@@ -120,6 +121,7 @@ Installed skills/plugins do not bundle the CLI binary. Do not require source-che
 - Deposit log detail currently reuses the deposit-log list row as the read model; do not assume a separate detail GET exists.
 - Keep answers read-only even if related write boundaries are already documented elsewhere.
 - Favor concise operator-style answers: visible fields first, ids second, contract nuance only when it changes interpretation.
+- Product/event date filters use API contract snake_case period types: `all`, `created_at`, `sales_start_at`, `sales_end_at`. For "판매 종료일/이벤트 종료기간" searches, pass `--period-type sales_end_at`; never pass UI/model camelCase keys such as `salesEnd`, `salesStart`, or `createdAt` as `period_type`.
 
 ## References
 - `references/routes.md`
