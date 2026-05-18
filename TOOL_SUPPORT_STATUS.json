@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_by": "scripts/install/export_ai_toolkit.py",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "status_taxonomy": {
     "marketplace-local-validation": "Generated marketplace files pass local export validation; runtime/manual evidence is tracked separately.",
     "manual-evidence-required": "Generated artifacts are present, but publish-ready status requires explicit validation evidence.",

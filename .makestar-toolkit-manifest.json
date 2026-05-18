@@ -4,33 +4,33 @@
   "files": [
     {
       "path": ".agents/plugins/marketplace.json",
-      "sha256": "19ad0daa07656b4bdbc8862a88bcfa4b5eaef6a43688e0253b0d3067dc2ee896",
-      "size_bytes": 492
+      "sha256": "3c8314210af7057af800dbd1876102e0c394f76ee781402f22a4a7a69c6cd6a2",
+      "size_bytes": 493
     },
     {
       "path": ".claude-plugin/marketplace.json",
-      "sha256": "eb5da45c025f8dbe8d2e3f84ec6180ff7d594b37930ccf147072f801f5a31b81",
-      "size_bytes": 543
+      "sha256": "b864148e8822af1f20078230924bbbb7928499266bfc81405e4b181faf523a39",
+      "size_bytes": 555
     },
     {
       "path": "PUBLISH_PROVENANCE.json",
-      "sha256": "4788849d0a013a538d918814dfd0b98a5920f034debe1455a4e2e94fde976ad6",
-      "size_bytes": 12226
+      "sha256": "81c9da8e563ff9658a2eaf0dd2dbc1c6ddce440416999e6007f3391575118322",
+      "size_bytes": 12161
     },
     {
       "path": "README.md",
-      "sha256": "69968638cc1725615f3cfa5bc5ae2490eed3a2cf8d17197b3868e9b90b0e5137",
-      "size_bytes": 3056
+      "sha256": "837031d9a1adff0096014cde70061586fee9af0067f208d411ac9d9f0e67d452",
+      "size_bytes": 3520
     },
     {
       "path": "TOOL_SUPPORT_STATUS.json",
-      "sha256": "45a60daa635c09bcafa757f81d9d58c29b2eda280cfc22e151daa3650e24470f",
-      "size_bytes": 2186
+      "sha256": "0828d30a66687443a16471d60d8ccc710ebeaadb27d4f73a1ca1baeeb182b625",
+      "size_bytes": 2187
     },
     {
       "path": "hermes/skills/makestar/bundle.yaml",
-      "sha256": "258fa1f1b915e49dd7c07a5f952be466d785c0217fdd4dc6d84761028742b4fb",
-      "size_bytes": 243
+      "sha256": "1ef436d39baeef9b4a050aad235861e474e8072d1faec34c2f673cd761ec1048",
+      "size_bytes": 244
     },
     {
       "path": "hermes/skills/makestar/makestar-admin-auth-token/SKILL.md",
@@ -194,13 +194,13 @@
     },
     {
       "path": "plugins/makestar-admin-skills/.claude-plugin/plugin.json",
-      "sha256": "0e1266e11abe93f5c39b1a9674a22cd8fecf51eb97db8d94be11e2e95d97fad0",
-      "size_bytes": 520
+      "sha256": "afded395881dc1746f1a895e6fbca7a71eed82273dc5be10b5c12904aa6a8ffd",
+      "size_bytes": 521
     },
     {
       "path": "plugins/makestar-admin-skills/.codex-plugin/plugin.json",
-      "sha256": "357014d073777e54cafbf6617eb624c8671d8690b864eb8259e17902468efbcc",
-      "size_bytes": 1473
+      "sha256": "ad60905f79e133fd393e98391956b3890c6420fd3640741347155782fe1dc764",
+      "size_bytes": 1474
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-auth-token/SKILL.md",

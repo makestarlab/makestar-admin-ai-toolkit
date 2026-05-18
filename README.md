@@ -18,7 +18,7 @@ Supported CLI distribution channels remain Homebrew, winget/MSI, and public CLI 
 
 ```bash
 claude plugin marketplace add makestarlab/makestar-admin-ai-toolkit
-claude plugin install makestar-admin-skills@makestar-admin
+claude plugin install makestar-admin-skills@makestar-admin-ai-toolkit
 ```
 
 Add the marketplace without a release tag or `@<ref>`. The unpinned command
@@ -30,13 +30,24 @@ If Claude still shows an older version after a release, refresh the marketplace
 cache and update the installed plugin:
 
 ```bash
-claude plugin marketplace remove makestar-admin
+claude plugin marketplace remove makestar-admin-ai-toolkit
 claude plugin marketplace add makestarlab/makestar-admin-ai-toolkit
-claude plugin marketplace update makestar-admin
-claude plugin update makestar-admin-skills@makestar-admin
+claude plugin marketplace update makestar-admin-ai-toolkit
+claude plugin update makestar-admin-skills@makestar-admin-ai-toolkit
 ```
 
 Restart Claude Desktop after updating so the refreshed plugin cache is loaded.
+
+If you installed older releases under the legacy marketplace ID
+`makestar-admin`, remove that marketplace/plugin once before reinstalling:
+
+```bash
+claude plugin uninstall makestar-admin-skills@makestar-admin
+claude plugin marketplace remove makestar-admin
+```
+
+The public marketplace name intentionally matches the GitHub repository name so
+Claude Desktop/Cowork and Claude Code CLI resolve the same plugin identity.
 
 ## Codex marketplace shape
 
@@ -82,4 +93,4 @@ python installers/opencode/install.py --project-root /path/to/your/project --bac
 
 ## Generated version
 
-`0.2.9`
+`0.2.10`
