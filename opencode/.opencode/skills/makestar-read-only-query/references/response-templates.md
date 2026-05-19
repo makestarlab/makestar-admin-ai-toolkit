@@ -108,7 +108,37 @@ Use these as operator-style answer templates after running the verified scripts.
 - empty result는 정상 read 결과다.
 - 범위를 넓히려면 logType 또는 date range를 조정하면 된다.
 
-## 5) Composite page detail 예시
+## 5) 안전재고 이하 SKU 조회
+
+### Trigger
+- `안전재고 이하 SKU만 보여줘`
+- `안전재고 위험 SKU 전체 목록 보여줘`
+
+### Recommended output
+조회 기준
+- 안전재고 이하 SKU: `--below-safety-quantity-only Y`
+
+결과
+- 총 46건
+- 1) SKU017304 / 베이비몬스터(BABYMONSTER)|WEGOUP|POSTCARDVer. / 가용재고 0 / 안전재고 108 / 박스당 수량 54
+- 2) SKU014747 / XLOV(XLOV)|IONE|1(ONE)VER. / 가용재고 58 / 안전재고 88 / 박스당 수량 88
+- 3) SKU014217 / P1Harmony(P1Harmony)|DUH!|CompactVer. / 가용재고 0 / 안전재고 120 / 박스당 수량 1
+
+관련 키
+- sku_code: SKU017304
+- production_company_product_code: YGP0672
+- distribution_code: 8800320199413
+
+메모
+- `safetyQuantity`가 안전재고이고, `vendorPackSize`는 박스당 수량이다.
+- 안전재고 위험 여부는 `availableQuantity <= safetyQuantity` 관계로 판단된다.
+- `vendorPackSize`와 `safetyQuantity`가 우연히 같은 SKU도 있으므로 둘을 같은 값으로 추정하지 않는다.
+
+### Notes
+- SKU list 응답에서는 `skuCode`, `skuName`, `availableQuantity`, `safetyQuantity`, `vendorPackSize`를 먼저 둔다.
+- 전체 목록을 요청받으면 서버 total(`resData.totCnt`)을 우선 사용하고, 필요하면 `--size`를 total 이상으로 키워 한 번에 가져온다.
+
+## 6) Composite page detail 예시
 
 ### Trigger
 - `업체 484 상세 보여줘`

@@ -50,7 +50,17 @@ Properties:
 - stdlib-only JSON file store
 - directory/file permissions best-effort private mode
 - contains secrets; never commit or copy into generated skill bundles
-- `MAKESTAR_ADMIN_AUTH_STORE` may override path for tests/temp smoke only
+- `MAKESTAR_ADMIN_AUTH_STORE` may point at an explicit sandbox-accessible credential store when the default home path is not appropriate; this is a supported operator/user override, not just a tests/temp smoke setting
+
+## Cowork auth-store contract
+
+Use one safe auth path per sandbox/session:
+
+1. CLI-managed credential store inside the sandbox, normally `~/.makestar-admin/credentials.json`.
+2. Pre-provisioned `MAKESTAR_ADMIN_ADMIN_TOKEN` env access token for resource scripts.
+3. Explicit `MAKESTAR_ADMIN_AUTH_STORE` path to a sandbox-accessible credential store chosen by the operator/user.
+
+Do not paste raw tokens into chat, docs, logs, or artifacts. Raw token modes (`--raw`, `--json`, `--shell`) are explicit machine-consumption modes only; in Cowork, evaluate or assign them directly inside the terminal session instead of displaying their output.
 
 ## Live endpoint nuance
 

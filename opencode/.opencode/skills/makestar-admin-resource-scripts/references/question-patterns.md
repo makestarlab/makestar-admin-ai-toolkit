@@ -193,6 +193,19 @@ Use this as a fast routing sheet for read-only Makestar admin queries.
   - `makestar-admin skus search --size 10`
 - Expected output:
   - SKU search rows under the default search body
+  - include `availableQuantity`, `safetyQuantity`, and `vendorPackSize` when present
+
+### 안전재고 이하 SKU 검색
+- Question:
+  - `안전재고 이하 SKU만 보여줘`
+  - `안전재고 위험 SKU 전체 목록 보여줘`
+- Command:
+  - `makestar-admin skus search --below-safety-quantity-only Y --size 10`
+- Expected output:
+  - SKU rows whose 가용재고 is at or below 안전재고
+  - `availableQuantity` = 가용재고
+  - `safetyQuantity` = 안전재고
+  - `vendorPackSize` = 박스당 수량
 
 ### SKU 재고/가격 상세
 - Question:
