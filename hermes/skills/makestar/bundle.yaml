@@ -1,6 +1,6 @@
 category: makestar
-version: 0.2.10
-supported_cli_requirement: ">=0.2.6"
+version: 0.2.11
+supported_cli_requirement: ">=0.2.10"
 skills:
   - makestar-admin-auth-token
   - makestar-admin-browser-token

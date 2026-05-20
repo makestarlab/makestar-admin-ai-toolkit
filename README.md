@@ -14,6 +14,20 @@ makestar-admin --version
 
 Supported CLI distribution channels remain Homebrew, winget/MSI, and public CLI release artifacts.
 
+## Cowork sandbox bootstrap
+
+For Claude Desktop Cowork or similar Linux x86_64 agent sandboxes, use the included POSIX shell helper as install support:
+
+```bash
+export MAKESTAR_ADMIN_CLI_RELEASE_TAG=r<approved-public-release-tag>
+export MAKESTAR_ADMIN_CLI_VERSION=<expected-cli-semver>
+export MAKESTAR_ADMIN_CLI_HOME="$HOME/.makestar-admin/cowork-cli"
+CLI_PATH=$(sh cowork/cowork-cli-bootstrap.sh resolve)
+"$CLI_PATH" --version
+```
+
+The helper installs only from the approved public CLI release origin, verifies manifest metadata, checksum, archive layout, and `--version`, then prints the exact executable path for skill use. It does not bundle the CLI binary and does not enable live Cowork query support by itself.
+
 ## Claude marketplace shape
 
 ```bash
@@ -93,4 +107,4 @@ python installers/opencode/install.py --project-root /path/to/your/project --bac
 
 ## Generated version
 
-`0.2.10`
+`0.2.11`

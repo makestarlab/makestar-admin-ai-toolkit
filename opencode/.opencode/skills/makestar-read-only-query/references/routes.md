@@ -98,6 +98,8 @@ These commands were chosen to match the actual current script CLI surface.
 - 안전재고 이하 SKU
   - question: `안전재고 이하 SKU만 보여줘`
   - command: `makestar-admin skus search --below-safety-quantity-only Y --size 10`
+  - output: show `availableQuantity`, `safetyQuantity`, and `vendorPackSize` as separate fields
+  - note: `safetyQuantity` is 안전재고; `vendorPackSize` is 박스당 수량
 - 벤더 기준 SKU
   - question: `vendorId 126 SKU 보여줘`
   - command: `makestar-admin skus search --vendor-id <vendor_id> --size 10`

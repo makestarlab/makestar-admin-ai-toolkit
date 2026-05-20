@@ -1,51 +1,61 @@
 {
   "schema_version": 1,
   "source_repo": "makestarlab/makestar-admin-contracts",
-  "source_commit": "095aae916f16494d3eec69ab513c2d975dd292e7",
-  "source_workflow_run": "manual-v0.2.10",
-  "version": "0.2.10",
-  "export_timestamp": "2026-05-18T02:41:33.097778+00:00",
-  "artifact_count": 51,
+  "source_commit": "7286783a69e64574d7a3b467ada4302b107a438e",
+  "source_workflow_run": "https://github.com/makestarlab/makestar-admin-contracts/actions/runs/26147635861",
+  "version": "0.2.11",
+  "export_timestamp": "2026-05-20T07:22:01.094961+00:00",
+  "artifact_count": 53,
   "artifact_digests": [
     {
       "path": ".agents/plugins/marketplace.json",
-      "sha256": "3c8314210af7057af800dbd1876102e0c394f76ee781402f22a4a7a69c6cd6a2",
-      "size_bytes": 493
+      "sha256": "e9674ff4bc88e15e4fbcbcdd465fe491ed5a73ef294415ef26c8ea62b407a5ab",
+      "size_bytes": 494
     },
     {
       "path": ".claude-plugin/marketplace.json",
-      "sha256": "b864148e8822af1f20078230924bbbb7928499266bfc81405e4b181faf523a39",
+      "sha256": "5dc5d3cac082dc903862b060c6de5883114e01074ad36d8a60c96337af90b8ce",
       "size_bytes": 555
     },
     {
       "path": "README.md",
-      "sha256": "837031d9a1adff0096014cde70061586fee9af0067f208d411ac9d9f0e67d452",
-      "size_bytes": 3520
+      "sha256": "da7892277d87018a63a9577b170ef823158e831fd1615b832158c83fb931ff22",
+      "size_bytes": 4239
     },
     {
       "path": "TOOL_SUPPORT_STATUS.json",
-      "sha256": "0828d30a66687443a16471d60d8ccc710ebeaadb27d4f73a1ca1baeeb182b625",
+      "sha256": "6c04dcf79aab4b888e6c45b25016e039e2636ff05da5cfa196138c27192ea4bb",
       "size_bytes": 2187
     },
     {
+      "path": "cowork/cowork-cli-bootstrap.md",
+      "sha256": "a8bd8bf54817f91abe391aa59de66ce0f7a62fdfb019b3ad00a854360587823a",
+      "size_bytes": 1468
+    },
+    {
+      "path": "cowork/cowork-cli-bootstrap.sh",
+      "sha256": "1c24d570d0648a9bf3da91106d6c4a7245041e016323a2d6f48eb54c05ef8c93",
+      "size_bytes": 12052
+    },
+    {
       "path": "hermes/skills/makestar/bundle.yaml",
-      "sha256": "1ef436d39baeef9b4a050aad235861e474e8072d1faec34c2f673cd761ec1048",
-      "size_bytes": 244
+      "sha256": "a28807c4cd176c5a0de12ea4758e144b44cf7d945791399a8b0fb976fde2026c",
+      "size_bytes": 245
     },
     {
       "path": "hermes/skills/makestar/makestar-admin-auth-token/SKILL.md",
-      "sha256": "8e1f5e7ccd8b087cbeb5e68d365543c19e444bc2353a04bd588b57c8f9b3346c",
-      "size_bytes": 4131
+      "sha256": "f31832a4e0e5291d180cf379b538e1662f3512193d3f4bc89c5eca1d2b7fe5a5",
+      "size_bytes": 6267
     },
     {
       "path": "hermes/skills/makestar/makestar-admin-auth-token/references/auth-cli.md",
-      "sha256": "e648be6278adf4a85157f225b5346139d32f83da28db5abb5a7e372ccc67e3b1",
-      "size_bytes": 1825
+      "sha256": "b2bb9987eb5ca32a64deca372fecd2b912432a35b35b98b4ef942c4c82b5da79",
+      "size_bytes": 2609
     },
     {
       "path": "hermes/skills/makestar/makestar-admin-browser-token/SKILL.md",
-      "sha256": "7b41a18de7c37863fab682071f88b660d0dc0954bf643bbae634ea355fb3cc88",
-      "size_bytes": 3150
+      "sha256": "ef21c7dc317eef3408f56c964a373b0f8ea931c7bb89b1364dbfd1db9b7bf41d",
+      "size_bytes": 4499
     },
     {
       "path": "hermes/skills/makestar/makestar-admin-browser-token/references/auth.md",
@@ -54,8 +64,8 @@
     },
     {
       "path": "hermes/skills/makestar/makestar-admin-event-resolution/SKILL.md",
-      "sha256": "eac23d0b2764918d1ab423f42de65f48699d7f6b4bf92ea2ff1e001929ba22e9",
-      "size_bytes": 2002
+      "sha256": "3985eaac465f357068999d59f2887b00cd0c1c4bf952fd7d857d2c830c035606",
+      "size_bytes": 3351
     },
     {
       "path": "hermes/skills/makestar/makestar-admin-event-resolution/references/workflow.md",
@@ -64,33 +74,33 @@
     },
     {
       "path": "hermes/skills/makestar/makestar-admin-resource-scripts/SKILL.md",
-      "sha256": "b0ec03698b15eba8a18b9f55029be2797b4deba27ff5bf340e65d30cfdb7f03c",
-      "size_bytes": 9631
+      "sha256": "0412a0667ca3c573e2782d2f00dc1dc5c2606975c0cb95677b2250072cd61872",
+      "size_bytes": 11818
     },
     {
       "path": "hermes/skills/makestar/makestar-admin-resource-scripts/references/question-patterns.md",
-      "sha256": "dec1ab1637bb73a431ad1743ca86cf3d90a0eac057b8e31f350dfacffcbadcb6",
-      "size_bytes": 7657
+      "sha256": "89d02487c2c498d1a1ffbd43203e13efd57a12b0fd8d25131a85ab1edc428f2d",
+      "size_bytes": 8166
     },
     {
       "path": "hermes/skills/makestar/makestar-admin-resource-scripts/references/scripts.md",
-      "sha256": "0e9930a012c9aecb9287d9344224b2b49de27cc9f5860ff8576c7b23e4f25950",
-      "size_bytes": 770
+      "sha256": "8f93fa0375210d8304cd671751199e763d6d6ef7e169210523761f8e4421adcb",
+      "size_bytes": 920
     },
     {
       "path": "hermes/skills/makestar/makestar-read-only-query/SKILL.md",
-      "sha256": "a1816ea32dddb263ef8f518f83c8c8a3c95f08f3d46074daa1e3ed9b3a01b110",
-      "size_bytes": 8163
+      "sha256": "cd1786d295754347f5f2895b705f9799eea5c9a44814a28e5484637bb518532c",
+      "size_bytes": 9671
     },
     {
       "path": "hermes/skills/makestar/makestar-read-only-query/references/response-templates.md",
-      "sha256": "51eed0a3b6287eefdaf7fe785217677a6d2258522aa0ec639b8eb2fc62cde8e9",
-      "size_bytes": 4331
+      "sha256": "e219fc2fbb37d0dee0d5a5dfc757e6191002ee7f8ab49b1f97cccf4ec3510a40",
+      "size_bytes": 5661
     },
     {
       "path": "hermes/skills/makestar/makestar-read-only-query/references/routes.md",
-      "sha256": "7bb68a00d4b33fed02b23fc484ffeb3d7fc8ab80d08cc4d8180d74fc3ad0b8d7",
-      "size_bytes": 6947
+      "sha256": "656513a9314178b44279375f726b0dc5e8b71b1a7ddae85a77235ab3ba0c100d",
+      "size_bytes": 7124
     },
     {
       "path": "installers/hermes/install.py",
@@ -104,18 +114,18 @@
     },
     {
       "path": "opencode/.opencode/skills/makestar-admin-auth-token/SKILL.md",
-      "sha256": "8e1f5e7ccd8b087cbeb5e68d365543c19e444bc2353a04bd588b57c8f9b3346c",
-      "size_bytes": 4131
+      "sha256": "f31832a4e0e5291d180cf379b538e1662f3512193d3f4bc89c5eca1d2b7fe5a5",
+      "size_bytes": 6267
     },
     {
       "path": "opencode/.opencode/skills/makestar-admin-auth-token/references/auth-cli.md",
-      "sha256": "e648be6278adf4a85157f225b5346139d32f83da28db5abb5a7e372ccc67e3b1",
-      "size_bytes": 1825
+      "sha256": "b2bb9987eb5ca32a64deca372fecd2b912432a35b35b98b4ef942c4c82b5da79",
+      "size_bytes": 2609
     },
     {
       "path": "opencode/.opencode/skills/makestar-admin-browser-token/SKILL.md",
-      "sha256": "7b41a18de7c37863fab682071f88b660d0dc0954bf643bbae634ea355fb3cc88",
-      "size_bytes": 3150
+      "sha256": "ef21c7dc317eef3408f56c964a373b0f8ea931c7bb89b1364dbfd1db9b7bf41d",
+      "size_bytes": 4499
     },
     {
       "path": "opencode/.opencode/skills/makestar-admin-browser-token/references/auth.md",
@@ -124,8 +134,8 @@
     },
     {
       "path": "opencode/.opencode/skills/makestar-admin-event-resolution/SKILL.md",
-      "sha256": "eac23d0b2764918d1ab423f42de65f48699d7f6b4bf92ea2ff1e001929ba22e9",
-      "size_bytes": 2002
+      "sha256": "3985eaac465f357068999d59f2887b00cd0c1c4bf952fd7d857d2c830c035606",
+      "size_bytes": 3351
     },
     {
       "path": "opencode/.opencode/skills/makestar-admin-event-resolution/references/workflow.md",
@@ -134,88 +144,88 @@
     },
     {
       "path": "opencode/.opencode/skills/makestar-admin-resource-scripts/SKILL.md",
-      "sha256": "b0ec03698b15eba8a18b9f55029be2797b4deba27ff5bf340e65d30cfdb7f03c",
-      "size_bytes": 9631
+      "sha256": "0412a0667ca3c573e2782d2f00dc1dc5c2606975c0cb95677b2250072cd61872",
+      "size_bytes": 11818
     },
     {
       "path": "opencode/.opencode/skills/makestar-admin-resource-scripts/references/question-patterns.md",
-      "sha256": "dec1ab1637bb73a431ad1743ca86cf3d90a0eac057b8e31f350dfacffcbadcb6",
-      "size_bytes": 7657
+      "sha256": "89d02487c2c498d1a1ffbd43203e13efd57a12b0fd8d25131a85ab1edc428f2d",
+      "size_bytes": 8166
     },
     {
       "path": "opencode/.opencode/skills/makestar-admin-resource-scripts/references/scripts.md",
-      "sha256": "0e9930a012c9aecb9287d9344224b2b49de27cc9f5860ff8576c7b23e4f25950",
-      "size_bytes": 770
+      "sha256": "8f93fa0375210d8304cd671751199e763d6d6ef7e169210523761f8e4421adcb",
+      "size_bytes": 920
     },
     {
       "path": "opencode/.opencode/skills/makestar-read-only-query/SKILL.md",
-      "sha256": "a1816ea32dddb263ef8f518f83c8c8a3c95f08f3d46074daa1e3ed9b3a01b110",
-      "size_bytes": 8163
+      "sha256": "cd1786d295754347f5f2895b705f9799eea5c9a44814a28e5484637bb518532c",
+      "size_bytes": 9671
     },
     {
       "path": "opencode/.opencode/skills/makestar-read-only-query/references/response-templates.md",
-      "sha256": "51eed0a3b6287eefdaf7fe785217677a6d2258522aa0ec639b8eb2fc62cde8e9",
-      "size_bytes": 4331
+      "sha256": "e219fc2fbb37d0dee0d5a5dfc757e6191002ee7f8ab49b1f97cccf4ec3510a40",
+      "size_bytes": 5661
     },
     {
       "path": "opencode/.opencode/skills/makestar-read-only-query/references/routes.md",
-      "sha256": "7bb68a00d4b33fed02b23fc484ffeb3d7fc8ab80d08cc4d8180d74fc3ad0b8d7",
-      "size_bytes": 6947
+      "sha256": "656513a9314178b44279375f726b0dc5e8b71b1a7ddae85a77235ab3ba0c100d",
+      "size_bytes": 7124
     },
     {
       "path": "opencode/ai-guides/opencode/opencode-usage.md",
-      "sha256": "9623c4b1d57d532a4ccb82eadd2d24330aed5f2e2205d9bee990d9f36cf72fee",
-      "size_bytes": 897
+      "sha256": "701a4ab4b516f180431c3b8a6074d813ede4e7c3be7f8f9f3a24fef145071cb5",
+      "size_bytes": 1226
     },
     {
       "path": "opencode/ai-guides/opencode/prompts/makestar-auth-token.md",
-      "sha256": "87220454eb1248caa8233ef2776c2f9792f4d49354463523254299587818710c",
-      "size_bytes": 212
+      "sha256": "ca2ad6e8a0bc33b1f85a21c46002a26fe35267af14f5a248bee10875156ed0b1",
+      "size_bytes": 727
     },
     {
       "path": "opencode/ai-guides/opencode/prompts/makestar-browser-token.md",
-      "sha256": "50eccc8bafab34a26836cae9f1bebcbd04dfa2d238c6e31ffe555e467f7b250c",
-      "size_bytes": 215
+      "sha256": "fedfcd5237d212f0275b13b52b0b770547981f12bb60057a561ca4282c67db78",
+      "size_bytes": 730
     },
     {
       "path": "opencode/ai-guides/opencode/prompts/makestar-event-resolution.md",
-      "sha256": "37792f8133cff627640d5fb29fdd711c09f46766fb902af09ec6169383114544",
-      "size_bytes": 277
+      "sha256": "ae1dc50d5a5b39384a4979905d24f7e85ddaf443ab909f01249da27e557e50c7",
+      "size_bytes": 792
     },
     {
       "path": "opencode/ai-guides/opencode/prompts/makestar-read-only-query.md",
-      "sha256": "c2773ba2f9e2f166e372545e30af3ebed8023785ab753b9d91782ca751ac9d0f",
-      "size_bytes": 242
+      "sha256": "6cc9378a27fc74fc34ced5e2064a389c3a31f7f26e22bf3d367c9b2ba89de8f2",
+      "size_bytes": 757
     },
     {
       "path": "opencode/ai-guides/opencode/prompts/makestar-resource-scripts.md",
-      "sha256": "dd31eea55674cbec221dbb53561e97061f42444105f32d9b0ac0e5f80c32f901",
-      "size_bytes": 175
+      "sha256": "b8a79aed60945728bdc7031b3cc6ce4534975b5e211ce9ff691d4e668f3b9a67",
+      "size_bytes": 690
     },
     {
       "path": "plugins/makestar-admin-skills/.claude-plugin/plugin.json",
-      "sha256": "afded395881dc1746f1a895e6fbca7a71eed82273dc5be10b5c12904aa6a8ffd",
+      "sha256": "a7e46fee681d02688a1e1618062faea49b865b69d63028fd1852db6836e0cdd7",
       "size_bytes": 521
     },
     {
       "path": "plugins/makestar-admin-skills/.codex-plugin/plugin.json",
-      "sha256": "ad60905f79e133fd393e98391956b3890c6420fd3640741347155782fe1dc764",
-      "size_bytes": 1474
+      "sha256": "84485df7e01619864246fd158f89a310495e50fdf515737fa54d840b45c781f6",
+      "size_bytes": 1475
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-auth-token/SKILL.md",
-      "sha256": "8e1f5e7ccd8b087cbeb5e68d365543c19e444bc2353a04bd588b57c8f9b3346c",
-      "size_bytes": 4131
+      "sha256": "f31832a4e0e5291d180cf379b538e1662f3512193d3f4bc89c5eca1d2b7fe5a5",
+      "size_bytes": 6267
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-auth-token/references/auth-cli.md",
-      "sha256": "e648be6278adf4a85157f225b5346139d32f83da28db5abb5a7e372ccc67e3b1",
-      "size_bytes": 1825
+      "sha256": "b2bb9987eb5ca32a64deca372fecd2b912432a35b35b98b4ef942c4c82b5da79",
+      "size_bytes": 2609
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-browser-token/SKILL.md",
-      "sha256": "7b41a18de7c37863fab682071f88b660d0dc0954bf643bbae634ea355fb3cc88",
-      "size_bytes": 3150
+      "sha256": "ef21c7dc317eef3408f56c964a373b0f8ea931c7bb89b1364dbfd1db9b7bf41d",
+      "size_bytes": 4499
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-browser-token/references/auth.md",
@@ -224,8 +234,8 @@
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-event-resolution/SKILL.md",
-      "sha256": "eac23d0b2764918d1ab423f42de65f48699d7f6b4bf92ea2ff1e001929ba22e9",
-      "size_bytes": 2002
+      "sha256": "3985eaac465f357068999d59f2887b00cd0c1c4bf952fd7d857d2c830c035606",
+      "size_bytes": 3351
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-event-resolution/references/workflow.md",
@@ -234,33 +244,33 @@
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-resource-scripts/SKILL.md",
-      "sha256": "b0ec03698b15eba8a18b9f55029be2797b4deba27ff5bf340e65d30cfdb7f03c",
-      "size_bytes": 9631
+      "sha256": "0412a0667ca3c573e2782d2f00dc1dc5c2606975c0cb95677b2250072cd61872",
+      "size_bytes": 11818
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-resource-scripts/references/question-patterns.md",
-      "sha256": "dec1ab1637bb73a431ad1743ca86cf3d90a0eac057b8e31f350dfacffcbadcb6",
-      "size_bytes": 7657
+      "sha256": "89d02487c2c498d1a1ffbd43203e13efd57a12b0fd8d25131a85ab1edc428f2d",
+      "size_bytes": 8166
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-admin-resource-scripts/references/scripts.md",
-      "sha256": "0e9930a012c9aecb9287d9344224b2b49de27cc9f5860ff8576c7b23e4f25950",
-      "size_bytes": 770
+      "sha256": "8f93fa0375210d8304cd671751199e763d6d6ef7e169210523761f8e4421adcb",
+      "size_bytes": 920
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-read-only-query/SKILL.md",
-      "sha256": "a1816ea32dddb263ef8f518f83c8c8a3c95f08f3d46074daa1e3ed9b3a01b110",
-      "size_bytes": 8163
+      "sha256": "cd1786d295754347f5f2895b705f9799eea5c9a44814a28e5484637bb518532c",
+      "size_bytes": 9671
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-read-only-query/references/response-templates.md",
-      "sha256": "51eed0a3b6287eefdaf7fe785217677a6d2258522aa0ec639b8eb2fc62cde8e9",
-      "size_bytes": 4331
+      "sha256": "e219fc2fbb37d0dee0d5a5dfc757e6191002ee7f8ab49b1f97cccf4ec3510a40",
+      "size_bytes": 5661
     },
     {
       "path": "plugins/makestar-admin-skills/skills/makestar-read-only-query/references/routes.md",
-      "sha256": "7bb68a00d4b33fed02b23fc484ffeb3d7fc8ab80d08cc4d8180d74fc3ad0b8d7",
-      "size_bytes": 6947
+      "sha256": "656513a9314178b44279375f726b0dc5e8b71b1a7ddae85a77235ab3ba0c100d",
+      "size_bytes": 7124
     }
   ],
   "toolkit_repo": "makestar-admin-ai-toolkit",

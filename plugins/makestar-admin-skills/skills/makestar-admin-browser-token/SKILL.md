@@ -12,12 +12,19 @@ Use this skill only as the browser fallback when `makestar-admin auth` is unavai
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.6.
-Before the first CLI-dependent action, run `makestar-admin --version`, compare it with the required range, then print exactly one status line:
-- `CLI update required` — if the CLI is missing, older than the minimum, or outside the supported range. Show the documented install path that can provide the required version for this platform, such as macOS `brew install makestarlab/tap/makestar-admin-cli`, Windows `winget install Makestar.MakestarAdminCLI` when current enough, or the public release MSI/archive; then stop until the user updates.
+Required: `makestar-admin` >=0.2.10.
+Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
+Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
+Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
+- `CLI update required` — if the CLI is missing, older than the minimum, or outside the supported range. Agents may attempt exactly one approved automatic install/upgrade for the detected host OS, then rerun `makestar-admin --version`.
+  - macOS host: run `brew update && (brew upgrade makestarlab/tap/makestar-admin-cli || brew install makestarlab/tap/makestar-admin-cli)`.
+  - Windows host PowerShell: run `winget upgrade --id Makestar.MakestarAdminCLI -e --source winget; if ($LASTEXITCODE -ne 0) { winget install --id Makestar.MakestarAdminCLI -e --source winget }`.
+  - Linux host: run `curl -fsSL https://github.com/makestarlab/makestar-admin-cli-releases/releases/latest/download/install.sh | sh`.
+  - Cowork/sandboxed Linux: use the generated package helper and its verification evidence, not host package managers.
+  If the approved command needs admin elevation, opens a GUI installer, fails, or still leaves the CLI outside the required range, stop and show the relevant manual setup path: Homebrew on macOS, winget or the public MSI on Windows, or the public release `install.sh`/archive on Linux.
 - `skill/plugin update required` — if the installed CLI is newer than this skill bundle supports and a newer skill bundle is available. Do not downgrade silently.
 - `check auth/setup` — only when the CLI is in range; then run `makestar-admin auth status` if the action still fails.
-Installed skills/plugins do not bundle the CLI binary. Do not require source-checkout or Python-module fallback commands from an installed skill/plugin bundle.
+Installed skills/plugins do not bundle the CLI binary. Do not require repository fallback or Python-module commands from an installed skill/plugin bundle.
 <!-- /managed:cli-preflight -->
 
 ## When to use

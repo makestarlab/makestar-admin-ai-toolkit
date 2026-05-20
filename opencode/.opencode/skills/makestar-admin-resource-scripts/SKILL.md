@@ -12,12 +12,19 @@ Use this skill to run the low-level resource probes without inventing new reques
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.6.
-Before the first CLI-dependent action, run `makestar-admin --version`, compare it with the required range, then print exactly one status line:
-- `CLI update required` — if the CLI is missing, older than the minimum, or outside the supported range. Show the documented install path that can provide the required version for this platform, such as macOS `brew install makestarlab/tap/makestar-admin-cli`, Windows `winget install Makestar.MakestarAdminCLI` when current enough, or the public release MSI/archive; then stop until the user updates.
+Required: `makestar-admin` >=0.2.10.
+Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
+Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
+Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
+- `CLI update required` — if the CLI is missing, older than the minimum, or outside the supported range. Agents may attempt exactly one approved automatic install/upgrade for the detected host OS, then rerun `makestar-admin --version`.
+  - macOS host: run `brew update && (brew upgrade makestarlab/tap/makestar-admin-cli || brew install makestarlab/tap/makestar-admin-cli)`.
+  - Windows host PowerShell: run `winget upgrade --id Makestar.MakestarAdminCLI -e --source winget; if ($LASTEXITCODE -ne 0) { winget install --id Makestar.MakestarAdminCLI -e --source winget }`.
+  - Linux host: run `curl -fsSL https://github.com/makestarlab/makestar-admin-cli-releases/releases/latest/download/install.sh | sh`.
+  - Cowork/sandboxed Linux: use the generated package helper and its verification evidence, not host package managers.
+  If the approved command needs admin elevation, opens a GUI installer, fails, or still leaves the CLI outside the required range, stop and show the relevant manual setup path: Homebrew on macOS, winget or the public MSI on Windows, or the public release `install.sh`/archive on Linux.
 - `skill/plugin update required` — if the installed CLI is newer than this skill bundle supports and a newer skill bundle is available. Do not downgrade silently.
 - `check auth/setup` — only when the CLI is in range; then run `makestar-admin auth status` if the action still fails.
-Installed skills/plugins do not bundle the CLI binary. Do not require source-checkout or Python-module fallback commands from an installed skill/plugin bundle.
+Installed skills/plugins do not bundle the CLI binary. Do not require repository fallback or Python-module commands from an installed skill/plugin bundle.
 <!-- /managed:cli-preflight -->
 
 ## Rules
@@ -42,6 +49,7 @@ Installed skills/plugins do not bundle the CLI binary. Do not require source-che
     $env:MAKESTAR_ADMIN_OMS_TOKEN = $tokens.MAKESTAR_ADMIN_OMS_TOKEN
     ```
   - Plain `cmd.exe` is not recommended; prefer PowerShell or Git Bash.
+- Installed release skill bundles should stop for CLI setup when the integrated CLI is unavailable; do not switch to repository module commands.
 - These setup paths populate the env-token contract expected by resource scripts:
   - `MAKESTAR_ADMIN_ADMIN_TOKEN`
   - `MAKESTAR_ADMIN_OMS_TOKEN`
@@ -50,11 +58,14 @@ Installed skills/plugins do not bundle the CLI binary. Do not require source-che
 - Do not move login, refresh-token storage, or browser inspection logic into individual resource scripts; keep them env-token based and independently testable.
 
 ## Typical commands
+- Prefer the integrated CLI. If the binary/console entrypoint is unavailable, complete the CLI preflight setup before running resource commands.
 - `makestar-admin product-events latest --display-status displayed --size 10`
 - `makestar-admin product-events list-by-code --code <event_code>`
 - `makestar-admin product-events detail <event_id>`
 - `makestar-admin product-contents list <product_id>`
 - `makestar-admin skus search --size 10`
+- `makestar-admin skus search --below-safety-quantity-only Y --size 10`
+  - SKU search summary must keep `safetyQuantity` 안전재고 separate from `vendorPackSize` 박스당 수량.
 - `makestar-admin skus stock-detail <sku_code>`
   - pricing questions should be answerable directly from the default summary output
   - summary should include at least `price`, `purchasePrice`, `taxationYn`, `vendorName`, `productionCompanyName`
@@ -129,6 +140,9 @@ Installed skills/plugins do not bundle the CLI binary. Do not require source-che
 ### SKU / 이벤트 조회
 - "최근 SKU 검색 10개"
   - `makestar-admin skus search --size 10`
+- "안전재고 이하 SKU만"
+  - `makestar-admin skus search --below-safety-quantity-only Y --size 10`
+  - output should include `availableQuantity`, `safetyQuantity`, and `vendorPackSize` as distinct columns
 - "SKU022138 재고/가격 상세"
   - `makestar-admin skus stock-detail SKU022138`
 - "최신 이벤트 목록"
@@ -161,6 +175,7 @@ Installed skills/plugins do not bundle the CLI binary. Do not require source-che
   - `user_group_grade` works with repeated query keys, not bracket-style array encoding
 
 ## Notes
+- For SKU search, `safetyQuantity` is 안전재고 and `vendorPackSize` is 박스당 수량. Do not use `vendorPackSize` as a fallback for 안전재고.
 - The live SKU detail response can expose at least two price-like fields:
   - `purchasePrice` = 매입가 / cost-side price
   - `price` = general price field exposed by SKU detail
