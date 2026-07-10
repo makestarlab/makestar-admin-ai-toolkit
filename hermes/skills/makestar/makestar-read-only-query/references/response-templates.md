@@ -43,7 +43,7 @@ Use these as operator-style answer templates after running the verified scripts.
 결과
 - 총 35건 (server-side total이 있으면 그 값을 우선 사용)
 - server-side total이 노출되지 않는 현재 요약 스크립트라면 `현재 응답 10건`처럼 page row count라고 명시한다.
-- 1) 주문번호 E-AFWQYA5 / 결제상태 CONFIRMED / 주문자 PM04 / 수령인 PM04 / 배송상태 0
+- 1) No 603813 / 주문 번호 E-AFWQYA5 / 주문 상태 결제완료 / 주문일시 ... / 결제 번호 ... / 결제 상태 결제성공 / 결제 수단 ... / 결제금액 ... / 상품 총액 ... / 배송비 ... / 주문자명 ... / 이메일 ... / 휴대전화 번호 ... / 수취인명 ... / 수취인 이메일 ... / 수취인 휴대전화 번호 ... / 수취인 국가 ... / 우편번호 ... / 주/도시 ... / 시 ... / 주소 1 ... / 주소 2 ... / 상품/이벤트 ID ... / 이벤트 종류 ... / 이벤트 코드 ... / 발매일 ... / 상품/프로젝트명 ... / 옵션 명 ... / 주문 수량 ... / 취소 수량 ... / 배송 상태 ... / 송장 번호 ... / 택배사 ... / 출고일시 ... / 배송요청 사항 ... / 관리자 배송요청 사항 ... / 배송준비일시 ... / 재고 할당일시 ... / 재고할당 ...
 - 2) 주문번호 ...
 - 3) 주문번호 ...
 
@@ -57,13 +57,13 @@ Use these as operator-style answer templates after running the verified scripts.
 - B2B 주문은 `--b2b`가 browser-observed tab variant를 탄다.
 
 ### Notes
-- list는 top 3~10개만 compact하게 보여주는 편이 낫다.
+- list는 top 3~10개를 보여주되, 각 row에는 admin 화면에 보이는 screen-visible field를 빠뜨리지 않는다.
 - `paymentStatus`, `recipientName`, `shippingStatus` 같은 visible fields를 우선한다.
 - `총 N건`이라고 쓸 때는 global total인지 current page row count인지 구분해서 적는다.
 
 ### 주문 상세 Notes
-- `makestar-admin orders detail <order_no>` 결과를 요약할 때는 header/payment만 쓰고 끝내지 말고 ordered item row도 포함한다.
-- ordered item마다 최소 `eventCode`, `productTitle`, `optionName`, `orderQuantity`를 표시한다. 이 필드들은 event/SKU contract regression anchor로 쓰인다.
+- `makestar-admin orders detail <order_no>` 결과를 요약할 때는 header/payment만 쓰고 끝내지 말고 화면의 상품정보/배송정보 row도 포함한다.
+- ordered item마다 화면 기준 `productEventId`, `eventType`, `productEventCode`, `releasedAt`, `productEventName`, `productEventOptionName`, `orderQuantity`, `cancelQuantity`를 표시한다. 이 필드들은 event/SKU contract regression anchor로 쓰인다.
 - PII가 포함될 수 있으므로 이름/email/phone/address는 사용자가 명시적으로 요구하지 않으면 `[REDACTED]` 또는 최소화해서 요약한다.
 
 ## 3) 발주 조회

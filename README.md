@@ -107,4 +107,4 @@ python installers/opencode/install.py --project-root /path/to/your/project --bac
 
 ## Generated version
 
-`0.2.11`
+`0.2.12`

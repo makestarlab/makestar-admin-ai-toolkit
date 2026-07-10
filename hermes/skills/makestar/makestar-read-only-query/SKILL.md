@@ -14,7 +14,7 @@ This is the thin operator-facing layer built on top of the broader `makestar-adm
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.10.
+Required: `makestar-admin` >=0.2.11.
 Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
 Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
 Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
@@ -50,11 +50,12 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 1. Map the user question to a verified command from `references/routes.md`.
 2. Run only the smallest read-only CLI command needed.
 3. If `/user-group/{id}` is involved, remember it is a composite page and split the read into detail / members / orders / deposit resources as needed.
-4. Return screen-visible fields first, then related ids/keys.
-5. If the needed filter is not exposed by the current CLI command, fall back to `makestar-admin-resource-scripts` and inspect the contract before inventing flags.
+4. If `포토카드 SKU OPP 작업` is involved, treat the whole screen as a composite page: use `photocard-sku-opp-work verify` for page health, and the individual `photocard-skus` / `photocard-work-requests` commands for resource rows.
+5. Return every screen-visible field exposed by the relevant admin page first, then related ids/keys.
+6. If the needed filter is not exposed by the current CLI command, fall back to `makestar-admin-resource-scripts` and inspect the contract before inventing flags.
 
 ## Recommended answer shape
-- Start with the user-visible answer first.
+- Start with the user-visible answer first, and include all screen-visible fields that the admin page shows for that resource.
   - Example: company name, status, manager, order number, payment status, SKU name, balance.
 - Then include the minimum useful related ids/keys.
   - Example: `group_id`, `order_no`, `purchase_order_code`, `purchase_order_request_id`, `sku_code`, `event_id`.
@@ -63,13 +64,13 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 - If the page is composite, say so explicitly.
   - Example: `/user-group/{id}` is composed from detail, members, orders, balance, and deposit logs.
 - If the result is empty, treat that as a valid read result, not a failure.
-- If the script output contains both display fields and internal keys, summarize display fields first and keep internal keys in a short trailing block.
+- If the script output contains both display fields and internal keys, include every display/screen-visible field first and keep internal keys in a short trailing block.
 - For lists, prefer:
   1. filter summary
   2. total count
      - prefer server-side pagination/count when available
      - if the current script summary only exposes page row count, say that explicitly instead of implying global total
-  3. top 3-10 rows in compact form
+  3. top 3-10 rows with all admin-page screen-visible fields for each row
   4. related ids/keys only where operationally useful
 - Count rule learned from live use:
   - prefer server-side pagination/count totals when available
@@ -97,6 +98,8 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   - `makestar-admin user-groups deposit-logs list <group_id> --start-date 2026-03-31 --end-date 2026-03-31`
 - 주문
   - `makestar-admin orders list --size 10`
+  - `makestar-admin orders list --stock-allocation-needed --size 10`
+  - `makestar-admin orders list --stock-allocation-needed --size 100 --csv-out stock-allocation-needed-orders.csv`
   - `makestar-admin orders list --b2b --size 10`
   - `makestar-admin orders list --product-event-code <event_code> --size 10`
   - `makestar-admin orders list --recipient-name <name> --size 10`
@@ -112,12 +115,16 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   - `makestar-admin purchase-requests detail <purchase_order_request_id>`
   - `makestar-admin advance-ship-notices search --purchase-order-code <purchase_order_code>`
   - `makestar-admin inbounds detail --purchase-order-code <po_code> --goods-received-note-id <grn_id>`
-- SKU/이벤트
+- SKU/포토카드 OPP/이벤트
   - `makestar-admin skus search --size 10`
   - `makestar-admin skus search --below-safety-quantity-only Y --size 10`
     - For SKU search output, treat `safetyQuantity` as 안전재고 and `vendorPackSize` as 박스당 수량. Do not infer 안전재고 from `vendorPackSize`.
   - `makestar-admin skus search --vendor-id <vendor_id> --size 10`
   - `makestar-admin skus stock-detail <sku_code>`
+  - `makestar-admin photocard-skus list --size 10`
+  - `makestar-admin photocard-skus statistics --json`
+  - `makestar-admin photocard-work-requests list --work-request-status WAITING --size 10`
+  - `makestar-admin photocard-sku-opp-work verify --size 1 --json`
   - `makestar-admin product-events latest --display-status displayed --size 10`
   - `makestar-admin product-events latest --period-type sales_end_at --end-date 2026-05-17 --size 10`
   - `makestar-admin product-events list-by-code --code <event_code>`
@@ -128,8 +135,9 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 - `/user-group/{id}` is not a single API. Treat it as a composite page.
 - Deposit log detail currently reuses the deposit-log list row as the read model; do not assume a separate detail GET exists.
 - Keep answers read-only even if related write boundaries are already documented elsewhere.
-- Favor concise operator-style answers: visible fields first, ids second, contract nuance only when it changes interpretation.
+- Favor operator-style answers that preserve admin page parity: all visible fields first, ids second, contract nuance only when it changes interpretation.
 - Product/event date filters use API contract snake_case period types: `all`, `created_at`, `sales_start_at`, `sales_end_at`. For "판매 종료일/이벤트 종료기간" searches, pass `--period-type sales_end_at`; never pass UI/model camelCase keys such as `salesEnd`, `salesStart`, or `createdAt` as `period_type`.
+- For 재고할당/배송준비전 주문 worklists, use `makestar-admin orders list --stock-allocation-needed`. It applies `order_status=2`, `product_event_type=product`, `payment_status=CONFIRMED`, and `delivery_requested=false`; this is read-only and does not mark rows 배송준비완료.
 
 ## References
 - `references/routes.md`

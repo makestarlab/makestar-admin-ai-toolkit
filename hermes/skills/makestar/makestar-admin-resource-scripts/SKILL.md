@@ -12,7 +12,7 @@ Use this skill to run the low-level resource probes without inventing new reques
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.10.
+Required: `makestar-admin` >=0.2.11.
 Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
 Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
 Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
@@ -69,7 +69,13 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 - `makestar-admin skus stock-detail <sku_code>`
   - pricing questions should be answerable directly from the default summary output
   - summary should include at least `price`, `purchasePrice`, `taxationYn`, `vendorName`, `productionCompanyName`
+  - distributor deadline questions should be answerable from detail summary fields `distributorPreOrderDeadline` (유통사 선주문 발주 마감일) and `distributorFinalOrderDeadline` (유통사 최종 발주 마감일)
+- `makestar-admin photocard-skus list --size 10`
+- `makestar-admin photocard-skus statistics --json`
+- `makestar-admin photocard-work-requests list --work-request-status WAITING --size 10`
+- `makestar-admin photocard-sku-opp-work verify --size 1 --json`
 - `makestar-admin orders list --size 10`
+- `makestar-admin orders list --stock-allocation-needed --size 10`
 - `makestar-admin orders detail <order_no>`
 - `makestar-admin orders get --ids <order_no1>,<order_no2>`
 - `makestar-admin purchase-orders list --size 10`
@@ -116,6 +122,10 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 ### 주문 조회
 - "최근 주문 10개"
   - `makestar-admin orders list --size 10`
+- "재고할당 필요한 배송준비전 주문"
+  - `makestar-admin orders list --stock-allocation-needed --size 10`
+  - applies `order_status=2`, `product_event_type=product`, `payment_status=CONFIRMED`, and `delivery_requested=false`
+  - keep this read-only; 배송준비완료 상태 변경은 통합어드민에서 운영자가 수행하는 별도 write action
 - "주문번호 C260418201844345M1 상세"
   - `makestar-admin orders detail C260418201844345M1`
 - "특정 이벤트 코드 주문만 보고 싶다"
@@ -137,7 +147,7 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 - "입고 상세 보기"
   - `makestar-admin inbounds detail --purchase-order-code <po_code> --goods-received-note-id <grn_id>`
 
-### SKU / 이벤트 조회
+### SKU / 포토카드 OPP / 이벤트 조회
 - "최근 SKU 검색 10개"
   - `makestar-admin skus search --size 10`
 - "안전재고 이하 SKU만"
@@ -145,6 +155,16 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   - output should include `availableQuantity`, `safetyQuantity`, and `vendorPackSize` as distinct columns
 - "SKU022138 재고/가격 상세"
   - `makestar-admin skus stock-detail SKU022138`
+  - default summary should include `price`, `purchasePrice`, `firstWeekClosingDate`, `distributorPreOrderDeadline`, and `distributorFinalOrderDeadline` when present
+- "포토카드 SKU OPP 요청 관리 목록"
+  - `makestar-admin photocard-skus list --size 10`
+- "포토카드 SKU OPP 입고~작업 관리 카운터"
+  - `makestar-admin photocard-skus statistics --json`
+- "포토카드 OPP 작업 대기 목록"
+  - `makestar-admin photocard-work-requests list --work-request-status WAITING --size 10`
+- "포토카드 SKU OPP 화면 API 묶음 검증"
+  - `makestar-admin photocard-sku-opp-work verify --size 1 --json`
+  - covers the `요청 관리` tab plus the `입고~작업 관리` statistics, inspection, and work-request list probes.
 - "최신 이벤트 목록"
   - `makestar-admin product-events latest --display-status displayed --size 10`
 - "2026-05-17에 판매 종료되는 상품/이벤트 검색"
@@ -179,9 +199,15 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 - The live SKU detail response can expose at least two price-like fields:
   - `purchasePrice` = 매입가 / cost-side price
   - `price` = general price field exposed by SKU detail
+- The live SKU detail response can expose distributor order deadline fields:
+  - `distributorPreOrderDeadline` = 유통사 선주문 발주 마감일 / Distributor pre-order deadline
+  - `distributorFinalOrderDeadline` = 유통사 최종 발주 마감일 / Distributor final order deadline
+  - Current live SKU search/list responses do not expose these fields; use `skus stock-detail` for them.
+- The live regression harness treats this as API drift: raw detail `resData.skuInfo` must contain both distributor deadline keys, while sampled raw search/list `resData.skuList[]` rows must not contain them. `lastOrderClosingDate` is legacy DB-mirror documentation only, not a current live API field requirement.
 - If the current `skus_stock_detail` script summary does not print both values, inspect the raw response or query the endpoint directly with the current browser-derived token.
 - When the shell token is missing, load `makestar-admin-auth-token` and stage env vars with the Bash/Git Bash or PowerShell command from that skill; use browser XHR/fetch extraction only as fallback.
 
 ## References
 - `references/scripts.md`
 - `references/question-patterns.md`
+- `references/photocard-opp.md` — 포토카드 SKU OPP `요청 관리` / `입고~작업 관리` read-only scripts, page-level verifier, regression rows, and pitfalls.

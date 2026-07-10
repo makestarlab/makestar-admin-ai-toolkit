@@ -46,6 +46,14 @@ These commands were chosen to match the actual current script CLI surface.
 - 최근 주문
   - question: `최근 주문 10개 보여줘`
   - command: `makestar-admin orders list --size 10`
+- 재고할당/배송준비전 주문
+  - question: `결제완료 상품 중 배송준비전이라 재고할당 필요한 주문 보여줘`
+  - command: `makestar-admin orders list --stock-allocation-needed --size 10`
+  - note: applies `order_status=2`, `product_event_type=product`, `payment_status=CONFIRMED`, and `delivery_requested=false`; read-only query only.
+- 재고할당/배송준비전 주문 CSV 저장
+  - question: `재고할당 필요한 배송준비전 주문을 엑셀에서 볼 수 있게 저장해줘`
+  - command: `makestar-admin orders list --stock-allocation-needed --size 100 --csv-out stock-allocation-needed-orders.csv`
+  - note: CSV has a BOM by default for Excel compatibility; changing rows to 배송준비완료 remains an integrated-admin operator action.
 - 이벤트 코드 기준 주문
   - question: `이벤트 코드 P_10103_BBGIRLS_3 주문만 보여줘`
   - command: `makestar-admin orders list --product-event-code <event_code> --size 10`
@@ -91,7 +99,7 @@ These commands were chosen to match the actual current script CLI surface.
   - question: `입고 상세 보여줘`
   - command: `makestar-admin inbounds detail --purchase-order-code <po_code> --goods-received-note-id <grn_id>`
 
-## SKU / event
+## SKU / photocard OPP / event
 - 최근 SKU
   - question: `최근 SKU 10개 보여줘`
   - command: `makestar-admin skus search --size 10`
@@ -106,6 +114,20 @@ These commands were chosen to match the actual current script CLI surface.
 - SKU 재고/가격 상세
   - question: `SKU022138 재고와 가격 상세 보여줘`
   - command: `makestar-admin skus stock-detail <sku_code>`
+- 포토카드 SKU OPP 요청 관리 목록
+  - question: `포토카드 SKU OPP 요청 관리 목록 보여줘`
+  - command: `makestar-admin photocard-skus list --size 10`
+- 포토카드 SKU OPP 입고~작업 관리 카운터
+  - question: `포토카드 SKU OPP 입고~작업 관리 카운터 보여줘`
+  - command: `makestar-admin photocard-skus statistics --json`
+- 포토카드 OPP 작업 상태 목록
+  - question: `포토카드 OPP 작업 대기 목록 보여줘`
+  - command: `makestar-admin photocard-work-requests list --work-request-status WAITING --size 10`
+  - variants: replace `WAITING` with `IN_PROGRESS` or `COMPLETED` for 작업 중/작업 완료.
+- 포토카드 SKU OPP 화면 API 묶음 검증
+  - question: `포토카드 SKU OPP 작업 화면 API 전체 검증해줘`
+  - command: `makestar-admin photocard-sku-opp-work verify --size 1 --json`
+  - note: treats the screen as composite: `요청 관리` plus `입고~작업 관리` statistics, inspection slices, and work-request slices.
 - 최신 이벤트 목록
   - question: `최신 이벤트 목록 보여줘`
   - command: `makestar-admin product-events latest --display-status displayed --size 10`

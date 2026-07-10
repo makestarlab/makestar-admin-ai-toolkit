@@ -108,6 +108,18 @@ Use this as a fast routing sheet for read-only Makestar admin queries.
 - Expected output:
   - latest visible orders under the script default query contract
 
+### 재고할당/배송준비전 주문
+- Question:
+  - `결제완료 상품 중 배송준비전이라 재고할당 필요한 주문 보여줘`
+  - `재고할당 필요한 주문을 엑셀에서 볼 수 있게 저장해줘`
+- Command:
+  - `makestar-admin orders list --stock-allocation-needed --size 10`
+  - `makestar-admin orders list --stock-allocation-needed --size 100 --csv-out stock-allocation-needed-orders.csv`
+- Expected output:
+  - 결제완료 + 상품 + 배송준비전 주문 rows
+  - preset query fields: `order_status=2`, `product_event_type=product`, `payment_status=CONFIRMED`, `delivery_requested=false`
+  - CSV output is read-only archival/export support; 배송준비완료 상태 변경 is still an integrated-admin operator action
+
 ### 특정 주문 상세
 - Question:
   - `주문번호 C260418201844345M1 상세 보여줘`
@@ -215,6 +227,7 @@ Use this as a fast routing sheet for read-only Makestar admin queries.
 - Expected output:
   - stock detail summary
   - include both `price` and `purchasePrice` when present
+  - include `distributorPreOrderDeadline` (유통사 선주문 발주 마감일) and `distributorFinalOrderDeadline` (유통사 최종 발주 마감일) when present; these are not list/search fields in current live evidence
 
 ### 최신 이벤트 목록
 - Question:
