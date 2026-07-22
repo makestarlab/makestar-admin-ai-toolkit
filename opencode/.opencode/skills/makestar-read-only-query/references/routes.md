@@ -2,6 +2,25 @@
 
 These commands were chosen to match the actual current script CLI surface.
 
+## 등록 기준정보
+- 아티스트 후보
+  - question: `아티스트 PLAVE 찾아줘`
+  - command: `makestar-admin reference-lookups artists --search <artist_name> --limit 10`
+- SKU 유통사 후보
+  - question: `SKU 유통사 후보 찾아줘`
+  - command: `makestar-admin reference-lookups manufacturers --search <company_name> --limit 10`
+  - note: calls the Admin company list with `role=MANUFACTURER`; selected `companyId` maps to SKU `productionCompanyId`.
+- SKU 발주처 후보
+  - question: `SKU 발주처 후보 찾아줘`
+  - command: `makestar-admin reference-lookups orderers --search <company_name> --limit 10`
+  - note: calls the Admin company list with `role=ORDERER`; selected `companyId` maps to SKU `vendorId`.
+- SKU 카테고리와 기본 사양
+  - question: `앨범 SKU 카테고리와 기본 규격 찾아줘`
+  - command: `makestar-admin reference-lookups sku-categories --search <category_name_or_code> --limit 10`
+  - note: returns OMS SKU type/category and dimensional/customs defaults; this is not 대분류(product) or a display category.
+- Raw reference response
+  - command: add `--raw` to any route above; local `--search` and `--limit` filtering is bypassed.
+
 ## B2B 업체 / 담당자
 - 대표 이메일로 업체 찾기
   - question: `대표 이메일 jinroh78@gmail.com 으로 B2B 업체 찾아줘`

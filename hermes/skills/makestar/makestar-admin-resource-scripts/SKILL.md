@@ -1,7 +1,7 @@
 ---
 name: makestar-admin-resource-scripts
 description: Run Makestar admin low-level resource scripts consistently across admin and OMS paths.
-version: 0.2.3
+version: 0.2.4
 author: Makestar Admin Contracts
 license: MIT
 ---
@@ -12,7 +12,7 @@ Use this skill to run the low-level resource probes without inventing new reques
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.11.
+Required: `makestar-admin` >=0.2.14.
 Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
 Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
 Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
@@ -70,6 +70,10 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   - pricing questions should be answerable directly from the default summary output
   - summary should include at least `price`, `purchasePrice`, `taxationYn`, `vendorName`, `productionCompanyName`
   - distributor deadline questions should be answerable from detail summary fields `distributorPreOrderDeadline` (유통사 선주문 발주 마감일) and `distributorFinalOrderDeadline` (유통사 최종 발주 마감일)
+- `makestar-admin reference-lookups artists --search <artist_name> --limit 10`
+- `makestar-admin reference-lookups manufacturers --search <company_name> --limit 10`
+- `makestar-admin reference-lookups orderers --search <company_name> --limit 10`
+- `makestar-admin reference-lookups sku-categories --search <category_name_or_code> --limit 10`
 - `makestar-admin photocard-skus list --size 10`
 - `makestar-admin photocard-skus statistics --json`
 - `makestar-admin photocard-work-requests list --work-request-status WAITING --size 10`
@@ -177,6 +181,19 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 - "상품 콘텐츠 목록"
   - `makestar-admin product-contents list <product_id>`
 
+### 등록 기준정보 조회
+- "아티스트 후보 찾기"
+  - `makestar-admin reference-lookups artists --search <artist_name> --limit 10`
+- "SKU 유통사 후보 찾기"
+  - `makestar-admin reference-lookups manufacturers --search <company_name> --limit 10`
+  - fetches only `role=MANUFACTURER`; the selected id maps to SKU `productionCompanyId`
+- "SKU 발주처 후보 찾기"
+  - `makestar-admin reference-lookups orderers --search <company_name> --limit 10`
+  - fetches only `role=ORDERER`; the selected id maps to SKU `vendorId`
+- "SKU 카테고리 후보와 기본 규격 찾기"
+  - `makestar-admin reference-lookups sku-categories --search <category_name_or_code> --limit 10`
+  - this is the OMS SKU type/category metadata used to prefill dimensions, volume, HS code, and customs description; it is not 대분류(product) or a display category
+
 ## Reusable findings
 - `/user-group/{id}` is a composite page contract, not a single API. In practice it is backed by:
   - `retrieve_user_group`
@@ -195,6 +212,9 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   - `user_group_grade` works with repeated query keys, not bracket-style array encoding
 
 ## Notes
+- Reference lookup `--search` and `--limit` are local presentation filters applied after the GET response. Use `--raw` when the complete unfiltered API response is required.
+- Keep company lookup semantics distinct: `manufacturers` is SKU 유통사 (`role=MANUFACTURER`, `productionCompanyId`), while `orderers` is SKU 발주처 (`role=ORDERER`, `vendorId`). Neither command is the unfiltered company selector used by 대분류 registration.
+- `reference-lookups sku-categories` means the OMS SKU type/category and its default dimensional/customs metadata. It is not Makestar 대분류(`product`) and not a B2C/B2B display category.
 - For SKU search, `safetyQuantity` is 안전재고 and `vendorPackSize` is 박스당 수량. Do not use `vendorPackSize` as a fallback for 안전재고.
 - The live SKU detail response can expose at least two price-like fields:
   - `purchasePrice` = 매입가 / cost-side price

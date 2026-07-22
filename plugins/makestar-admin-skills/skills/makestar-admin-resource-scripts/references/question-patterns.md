@@ -2,6 +2,44 @@
 
 Use this as a fast routing sheet for read-only Makestar admin queries.
 
+## 등록 기준정보 조회
+
+### 아티스트 후보
+- Question:
+  - `아티스트 PLAVE 찾아줘`
+- Command:
+  - `makestar-admin reference-lookups artists --search PLAVE --limit 10`
+- Expected output:
+  - matching artist ids and names from the Admin artist list
+
+### SKU 유통사 후보
+- Question:
+  - `SKU 유통사 후보 찾아줘`
+- Command:
+  - `makestar-admin reference-lookups manufacturers --search <company_name> --limit 10`
+- Expected output:
+  - only `role=MANUFACTURER` company rows
+  - selected `companyId` maps to SKU `productionCompanyId`
+
+### SKU 발주처 후보
+- Question:
+  - `SKU 발주처 후보 찾아줘`
+- Command:
+  - `makestar-admin reference-lookups orderers --search <company_name> --limit 10`
+- Expected output:
+  - only `role=ORDERER` company rows
+  - selected `companyId` maps to SKU `vendorId`
+
+### SKU 카테고리와 기본 사양
+- Question:
+  - `앨범 SKU 카테고리와 기본 규격 찾아줘`
+- Command:
+  - `makestar-admin reference-lookups sku-categories --search <category_name_or_code> --limit 10`
+- Expected output:
+  - OMS SKU type/category code and name
+  - dimensional, volume, HS-code, and customs-description defaults when present
+  - this is not 대분류(product) or a B2C/B2B display category
+
 ## B2B 업체 찾기
 
 ### 대표 이메일로 업체 찾기

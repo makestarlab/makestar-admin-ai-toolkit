@@ -1,7 +1,7 @@
 ---
 name: makestar-read-only-query
 description: Fast routing skill for read-only Makestar admin queries using verified resource scripts.
-version: 0.1.5
+version: 0.1.6
 author: Makestar Admin Contracts
 license: MIT
 ---
@@ -14,7 +14,7 @@ This is the thin operator-facing layer built on top of the broader `makestar-adm
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.11.
+Required: `makestar-admin` >=0.2.14.
 Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
 Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
 Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
@@ -32,6 +32,7 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 ## Use when
 - The user wants to find a B2B 업체, member, order activity, or deposit log.
 - The user wants to inspect orders, purchase orders, purchase requests, ASN search results, inbounds, SKUs, or product events.
+- The user wants to look up artist, SKU distributor, SKU orderer, or SKU category reference data for a registration form.
 - You want a direct question -> command mapping with verified CLI flags.
 
 ## Do not use for
@@ -82,6 +83,13 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   4. contract nuance if important (for example OMS fallback, row-backed detail, composite page)
 
 ## Fast routes
+- 등록 기준정보
+  - `makestar-admin reference-lookups artists --search <artist_name> --limit 10`
+  - `makestar-admin reference-lookups manufacturers --search <company_name> --limit 10`
+  - `makestar-admin reference-lookups orderers --search <company_name> --limit 10`
+  - `makestar-admin reference-lookups sku-categories --search <category_name_or_code> --limit 10`
+  - `manufacturers` is SKU 유통사 (`role=MANUFACTURER`, `productionCompanyId`); `orderers` is SKU 발주처 (`role=ORDERER`, `vendorId`).
+  - SKU category here means the OMS SKU type/category and dimensional/customs defaults, not 대분류(product) or display category.
 - B2B 업체 찾기
   - `makestar-admin user-groups list --name-or-email <email> --size 10`
   - `makestar-admin user-groups list --company-name <company> --size 10`
@@ -132,6 +140,7 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   - `makestar-admin product-contents list <product_id>`
 
 ## Notes
+- Reference lookup `--search` and `--limit` are local filters; use `--raw` for the full unfiltered GET response.
 - `/user-group/{id}` is not a single API. Treat it as a composite page.
 - Deposit log detail currently reuses the deposit-log list row as the read model; do not assume a separate detail GET exists.
 - Keep answers read-only even if related write boundaries are already documented elsewhere.
