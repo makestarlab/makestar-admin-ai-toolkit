@@ -10,11 +10,11 @@ Usage pattern notes:
 
 Reference lookup commands:
 - `makestar-admin reference-lookups artists --search <artist_name> --limit 10`
-  - Admin artist list; the selected id is used as SKU `artistId` or 대분류 `artist_id` according to the target form.
+  - Admin artist list; searches every localized name and renders Korean-compatible `artistName` plus `artistNameEn`, `artistNameJa`, and `artistNameZh`. The selected id is used as SKU `artistId` or 대분류 `artist_id` according to the target form.
 - `makestar-admin reference-lookups manufacturers --search <company_name> --limit 10`
-  - Admin company list constrained to `role=MANUFACTURER`; SKU 유통사 maps to `productionCompanyId`.
+  - Admin V2 company list constrained to `role=MANUFACTURER`; each company is one row with Korean-compatible `companyName` plus `companyNameEn`, `companyNameJa`, and `companyNameZh`. SKU 유통사 maps to `productionCompanyId`.
 - `makestar-admin reference-lookups orderers --search <company_name> --limit 10`
-  - Admin company list constrained to `role=ORDERER`; SKU 발주처 maps to `vendorId`.
+  - Admin V2 company list constrained to `role=ORDERER`; each company is one row with Korean-compatible `companyName` plus `companyNameEn`, `companyNameJa`, and `companyNameZh`. SKU 발주처 maps to `vendorId`.
 - `makestar-admin reference-lookups sku-categories --search <category_name_or_code> --limit 10`
   - OMS SKU type/category metadata and dimensional/customs defaults; not 대분류(product) or a display category.
-- `--search` and `--limit` filter the rendered summary locally after the GET response. `--raw` returns the full unfiltered API response.
+- `--search` and `--limit` filter the rendered summary locally after the GET response. Artist/company search includes every multilingual name-map value. `--raw` returns the full unfiltered API response including `i18n_name`/`i18nName`.

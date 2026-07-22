@@ -14,7 +14,7 @@ This is the thin operator-facing layer built on top of the broader `makestar-adm
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.14.
+Required: `makestar-admin` >=0.2.15.
 Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
 Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
 Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
@@ -89,6 +89,8 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   - `makestar-admin reference-lookups orderers --search <company_name> --limit 10`
   - `makestar-admin reference-lookups sku-categories --search <category_name_or_code> --limit 10`
   - `manufacturers` is SKU 유통사 (`role=MANUFACTURER`, `productionCompanyId`); `orderers` is SKU 발주처 (`role=ORDERER`, `vendorId`).
+  - Artist/company search includes all localized names. Summaries expose Korean-compatible names plus English, Japanese, and Chinese columns; `--raw` preserves `i18n_name`/`i18nName`.
+  - Manufacturer/orderer commands use the V2 company list so each company is one row instead of one flattened row per translation.
   - SKU category here means the OMS SKU type/category and dimensional/customs defaults, not 대분류(product) or display category.
 - B2B 업체 찾기
   - `makestar-admin user-groups list --name-or-email <email> --size 10`

@@ -10,7 +10,8 @@ Use this as a fast routing sheet for read-only Makestar admin queries.
 - Command:
   - `makestar-admin reference-lookups artists --search PLAVE --limit 10`
 - Expected output:
-  - matching artist ids and names from the Admin artist list
+  - matching artist ids and Korean, English, Japanese, and Chinese names from the Admin artist list
+  - search can match any value in `i18n_name`
 
 ### SKU 유통사 후보
 - Question:
@@ -18,7 +19,7 @@ Use this as a fast routing sheet for read-only Makestar admin queries.
 - Command:
   - `makestar-admin reference-lookups manufacturers --search <company_name> --limit 10`
 - Expected output:
-  - only `role=MANUFACTURER` company rows
+  - one company row per `role=MANUFACTURER` result, with Korean, English, Japanese, and Chinese names from V2 `i18nName`
   - selected `companyId` maps to SKU `productionCompanyId`
 
 ### SKU 발주처 후보
@@ -27,7 +28,7 @@ Use this as a fast routing sheet for read-only Makestar admin queries.
 - Command:
   - `makestar-admin reference-lookups orderers --search <company_name> --limit 10`
 - Expected output:
-  - only `role=ORDERER` company rows
+  - one company row per `role=ORDERER` result, with Korean, English, Japanese, and Chinese names from V2 `i18nName`
   - selected `companyId` maps to SKU `vendorId`
 
 ### SKU 카테고리와 기본 사양

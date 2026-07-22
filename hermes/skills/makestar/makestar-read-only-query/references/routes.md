@@ -6,20 +6,21 @@ These commands were chosen to match the actual current script CLI surface.
 - 아티스트 후보
   - question: `아티스트 PLAVE 찾아줘`
   - command: `makestar-admin reference-lookups artists --search <artist_name> --limit 10`
+  - note: searches every `i18n_name` value and renders Korean-compatible `artistName` plus English, Japanese, and Chinese columns.
 - SKU 유통사 후보
   - question: `SKU 유통사 후보 찾아줘`
   - command: `makestar-admin reference-lookups manufacturers --search <company_name> --limit 10`
-  - note: calls the Admin company list with `role=MANUFACTURER`; selected `companyId` maps to SKU `productionCompanyId`.
+  - note: calls the Admin V2 company list with `role=MANUFACTURER`; one row contains `i18nName`-backed Korean, English, Japanese, and Chinese columns. Selected `companyId` maps to SKU `productionCompanyId`.
 - SKU 발주처 후보
   - question: `SKU 발주처 후보 찾아줘`
   - command: `makestar-admin reference-lookups orderers --search <company_name> --limit 10`
-  - note: calls the Admin company list with `role=ORDERER`; selected `companyId` maps to SKU `vendorId`.
+  - note: calls the Admin V2 company list with `role=ORDERER`; one row contains `i18nName`-backed Korean, English, Japanese, and Chinese columns. Selected `companyId` maps to SKU `vendorId`.
 - SKU 카테고리와 기본 사양
   - question: `앨범 SKU 카테고리와 기본 규격 찾아줘`
   - command: `makestar-admin reference-lookups sku-categories --search <category_name_or_code> --limit 10`
   - note: returns OMS SKU type/category and dimensional/customs defaults; this is not 대분류(product) or a display category.
 - Raw reference response
-  - command: add `--raw` to any route above; local `--search` and `--limit` filtering is bypassed.
+  - command: add `--raw` to any route above; local `--search` and `--limit` filtering is bypassed, and artist/company multilingual maps are preserved.
 
 ## B2B 업체 / 담당자
 - 대표 이메일로 업체 찾기

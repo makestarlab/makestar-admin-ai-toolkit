@@ -12,7 +12,7 @@ Use this skill to run the low-level resource probes without inventing new reques
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.14.
+Required: `makestar-admin` >=0.2.15.
 Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
 Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
 Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
@@ -184,12 +184,14 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 ### 등록 기준정보 조회
 - "아티스트 후보 찾기"
   - `makestar-admin reference-lookups artists --search <artist_name> --limit 10`
+  - searches every localized name and shows Korean-compatible `artistName` plus `artistNameEn`, `artistNameJa`, and `artistNameZh`
 - "SKU 유통사 후보 찾기"
   - `makestar-admin reference-lookups manufacturers --search <company_name> --limit 10`
-  - fetches only `role=MANUFACTURER`; the selected id maps to SKU `productionCompanyId`
+  - fetches the V2 company list with `role=MANUFACTURER`; one company row includes Korean-compatible `companyName` plus `companyNameEn`, `companyNameJa`, and `companyNameZh`; the selected id maps to SKU `productionCompanyId`
 - "SKU 발주처 후보 찾기"
   - `makestar-admin reference-lookups orderers --search <company_name> --limit 10`
-  - fetches only `role=ORDERER`; the selected id maps to SKU `vendorId`
+  - fetches the V2 company list with `role=ORDERER`; one company row includes Korean-compatible `companyName` plus `companyNameEn`, `companyNameJa`, and `companyNameZh`; the selected id maps to SKU `vendorId`
+- For artist/company lookups, `--search` matches every value in the multilingual name map and `--raw` preserves that map (`i18n_name` or `i18nName`).
 - "SKU 카테고리 후보와 기본 규격 찾기"
   - `makestar-admin reference-lookups sku-categories --search <category_name_or_code> --limit 10`
   - this is the OMS SKU type/category metadata used to prefill dimensions, volume, HS code, and customs description; it is not 대분류(product) or a display category
