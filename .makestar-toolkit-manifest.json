@@ -14,18 +14,18 @@
     },
     {
       "path": "PUBLISH_PROVENANCE.json",
-      "sha256": "568052c7959ac905da30312449a8756233d67971c0be47ff4e939641587730c4",
-      "size_bytes": 13198
+      "sha256": "dc0f8b968957fd2deeeeab740f10cd2320d8430bb063940c2cda5a9446d984f4",
+      "size_bytes": 13204
     },
     {
       "path": "README.md",
-      "sha256": "8cb9a5edddaae29a2c3228f5ecb21b2ab79fafe7d001733ce8d128840926bd6f",
-      "size_bytes": 4239
+      "sha256": "3c4e9f8c7021a5239b7a98c110a5a0613fe91762fa752eaccc327d6c16bbac9d",
+      "size_bytes": 4245
     },
     {
       "path": "TOOL_SUPPORT_STATUS.json",
-      "sha256": "e2454ea1e1015205efedd429900903466ea99b29c46681d7ef4def1b20e410c1",
-      "size_bytes": 2187
+      "sha256": "b3875a8d20905656540cdb42dba3665a2318c00106f96d07dfb57449a86868e2",
+      "size_bytes": 2193
     },
     {
       "path": "cowork/cowork-cli-bootstrap.md",
