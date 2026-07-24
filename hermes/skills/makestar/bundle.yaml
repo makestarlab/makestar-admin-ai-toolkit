@@ -1,9 +1,10 @@
 category: makestar
-version: 0.2.16
-supported_cli_requirement: ">=0.2.15"
+version: 0.2.17
+supported_cli_requirement: ">=0.2.16"
 skills:
   - makestar-admin-auth-token
   - makestar-admin-browser-token
   - makestar-admin-resource-scripts
   - makestar-admin-event-resolution
   - makestar-read-only-query
+  - makestar-admin-order-writes

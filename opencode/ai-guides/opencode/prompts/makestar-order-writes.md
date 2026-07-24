@@ -4,6 +4,6 @@
 > Host shells keep Homebrew, winget/MSI, or public release archive setup.
 <!-- /managed:supported_cli_requirement -->
 
-Use existing Makestar resource scripts rather than inventing new request shapes.
+Operate Makestar order writes only through the verified Stage-only `makestar-admin` workflow.
 
-Read-only only unless the task explicitly asks for source-only write-boundary documentation.
+Use Admin `user_order_number` as the positional identifier, show a dry-run first, and require explicit user authorization for the exact named order set before adding `--env stage --execute --confirm-stage-write`. Complete the documented readback and recovery; never run a live Stage write in unattended CI.

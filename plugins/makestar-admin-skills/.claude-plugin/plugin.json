@@ -1,6 +1,6 @@
 {
   "name": "makestar-admin-skills",
-  "version": "0.2.16",
+  "version": "0.2.17",
   "description": "Makestar admin skills that use the separately installed makestar-admin CLI.",
   "author": {
     "name": "Makestar"
@@ -11,6 +11,7 @@
   "keywords": [
     "makestar-admin",
     "read-only",
+    "stage-write",
     "admin-api",
     "resource-tooling",
     "agent-skills"

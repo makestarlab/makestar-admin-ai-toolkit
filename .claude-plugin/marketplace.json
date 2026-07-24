@@ -8,13 +8,14 @@
     {
       "name": "makestar-admin-skills",
       "source": "./plugins/makestar-admin-skills",
-      "version": "0.2.16",
+      "version": "0.2.17",
       "description": "Makestar admin skills that use the separately installed makestar-admin CLI.",
       "category": "Operations",
       "tags": [
         "makestar-admin",
         "admin-api",
-        "read-only"
+        "read-only",
+        "stage-write"
       ]
     }
   ]
