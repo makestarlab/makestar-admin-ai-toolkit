@@ -8,6 +8,15 @@ Usage pattern notes:
 - For B2B `/user-group/{id}` questions, remember the page is composite: detail, members, orders, deposit balance, and deposit logs are separate reads.
 - For deposit log detail questions, use the logs list row as the read model; do not assume a separate detail GET exists.
 
+Product (대분류) commands:
+- `makestar-admin products list --size 10`
+- `makestar-admin products list --search <title_product_code_artist_company_or_id> --size 10`
+- `makestar-admin products list --period-type created_at --start-date <YYYY-MM-DD> --end-date <YYYY-MM-DD> --size 10`
+- `makestar-admin products list --period-type released_at --start-date <YYYY-MM-DD> --end-date <YYYY-MM-DD> --size 10`
+  - 대분류 is `product`; 상품 is `product_event`.
+  - Both dates are required for `created_at` and `released_at`.
+  - Use `pagination.count` for the global total and the response row length for the current-page count.
+
 Reference lookup commands:
 - `makestar-admin reference-lookups artists --search <artist_name> --limit 10`
   - Admin artist list; searches every localized name and renders Korean-compatible `artistName` plus `artistNameEn`, `artistNameJa`, and `artistNameZh`. The selected id is used as SKU `artistId` or 대분류 `artist_id` according to the target form.

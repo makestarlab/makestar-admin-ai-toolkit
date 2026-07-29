@@ -1,7 +1,7 @@
 ---
 name: makestar-read-only-query
 description: Fast routing skill for read-only Makestar admin queries using verified resource scripts.
-version: 0.1.6
+version: 0.1.7
 author: Makestar Admin Contracts
 license: MIT
 ---
@@ -14,7 +14,7 @@ This is the thin operator-facing layer built on top of the broader `makestar-adm
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.16.
+Required: `makestar-admin` >=0.2.17.
 Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
 Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
 Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
@@ -31,7 +31,7 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 
 ## Use when
 - The user wants to find a B2B 업체, member, order activity, or deposit log.
-- The user wants to inspect orders, purchase orders, purchase requests, ASN search results, inbounds, SKUs, or product events.
+- The user wants to inspect orders, purchase orders, purchase requests, ASN search results, inbounds, 대분류 products, SKUs, or product events.
 - The user wants to look up artist, SKU distributor, SKU orderer, or SKU category reference data for a registration form.
 - You want a direct question -> command mapping with verified CLI flags.
 
@@ -125,7 +125,11 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   - `makestar-admin purchase-requests detail <purchase_order_request_id>`
   - `makestar-admin advance-ship-notices search --purchase-order-code <purchase_order_code>`
   - `makestar-admin inbounds detail --purchase-order-code <po_code> --goods-received-note-id <grn_id>`
-- SKU/포토카드 OPP/이벤트
+- 대분류/SKU/포토카드 OPP/이벤트
+  - `makestar-admin products list --size 10`
+  - `makestar-admin products list --search <title_product_code_artist_company_or_id> --size 10`
+  - `makestar-admin products list --period-type created_at --start-date 2026-07-01 --end-date 2026-07-31 --size 10`
+  - `makestar-admin products list --period-type released_at --start-date 2026-07-01 --end-date 2026-07-31 --size 10`
   - `makestar-admin skus search --size 10`
   - `makestar-admin skus search --below-safety-quantity-only Y --size 10`
     - For SKU search output, treat `safetyQuantity` as 안전재고 and `vendorPackSize` as 박스당 수량. Do not infer 안전재고 from `vendorPackSize`.
@@ -147,7 +151,9 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 - Deposit log detail currently reuses the deposit-log list row as the read model; do not assume a separate detail GET exists.
 - Keep answers read-only even if related write boundaries are already documented elsewhere.
 - Favor operator-style answers that preserve admin page parity: all visible fields first, ids second, contract nuance only when it changes interpretation.
-- Product/event date filters use API contract snake_case period types: `all`, `created_at`, `sales_start_at`, `sales_end_at`. For "판매 종료일/이벤트 종료기간" searches, pass `--period-type sales_end_at`; never pass UI/model camelCase keys such as `salesEnd`, `salesStart`, or `createdAt` as `period_type`.
+- 대분류 is `product`, while 상품 is `product_event`. Route 대분류 list/search questions to `products list`, not `product-events`; SKU category lookup is a third, separate concept.
+- 대분류 date filters use `all`, `created_at`, or `released_at`. Both `--start-date` and `--end-date` are required for an effective `created_at`/`released_at` range.
+- 상품/product-event date filters use `all`, `created_at`, `sales_start_at`, or `sales_end_at`. For "판매 종료일/이벤트 종료기간" searches, pass `--period-type sales_end_at`; never pass UI/model camelCase keys such as `salesEnd`, `salesStart`, or `createdAt` as `period_type`.
 - For 재고할당/배송준비전 주문 worklists, use `makestar-admin orders list --stock-allocation-needed`. It applies `order_status=2`, `product_event_type=product`, `payment_status=CONFIRMED`, and `delivery_requested=false`; this is read-only and does not mark rows 배송준비완료.
 
 ## References

@@ -1,7 +1,7 @@
 ---
 name: makestar-admin-resource-scripts
 description: Run Makestar admin low-level resource scripts consistently across admin and OMS paths.
-version: 0.2.4
+version: 0.2.5
 author: Makestar Admin Contracts
 license: MIT
 ---
@@ -12,7 +12,7 @@ Use this skill to run the low-level resource probes without inventing new reques
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.16.
+Required: `makestar-admin` >=0.2.17.
 Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
 Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
 Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
@@ -59,6 +59,10 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 
 ## Typical commands
 - Prefer the integrated CLI. If the binary/console entrypoint is unavailable, complete the CLI preflight setup before running resource commands.
+- `makestar-admin products list --size 10`
+- `makestar-admin products list --search <title_product_code_artist_company_or_id> --size 10`
+- `makestar-admin products list --period-type created_at --start-date <YYYY-MM-DD> --end-date <YYYY-MM-DD> --size 10`
+- `makestar-admin products list --period-type released_at --start-date <YYYY-MM-DD> --end-date <YYYY-MM-DD> --size 10`
 - `makestar-admin product-events latest --display-status displayed --size 10`
 - `makestar-admin product-events list-by-code --code <event_code>`
 - `makestar-admin product-events detail <event_id>`
@@ -151,6 +155,19 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 - "입고 상세 보기"
   - `makestar-admin inbounds detail --purchase-order-code <po_code> --goods-received-note-id <grn_id>`
 
+### 대분류 조회
+- "최근 대분류 10개"
+  - `makestar-admin products list --size 10`
+- "검색어로 대분류 찾기"
+  - `makestar-admin products list --search <title_product_code_artist_company_or_id> --size 10`
+  - search covers title, product code, artist nickname, company name, and numeric product id
+- "상품등록일 기준 대분류 찾기"
+  - `makestar-admin products list --period-type created_at --start-date <YYYY-MM-DD> --end-date <YYYY-MM-DD> --size 10`
+- "발매일 기준 대분류 찾기"
+  - `makestar-admin products list --period-type released_at --start-date <YYYY-MM-DD> --end-date <YYYY-MM-DD> --size 10`
+  - both dates are required; use `pagination.count` as the global total and current row length as page count
+  - 대분류 is `product`; 상품 is `product_event`
+
 ### SKU / 포토카드 OPP / 이벤트 조회
 - "최근 SKU 검색 10개"
   - `makestar-admin skus search --size 10`
@@ -197,6 +214,9 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   - this is the OMS SKU type/category metadata used to prefill dimensions, volume, HS code, and customs description; it is not 대분류(product) or a display category
 
 ## Reusable findings
+- Makestar terms are intentionally distinct: 대분류 = `product`, 상품 = `product_event`, and SKU category = OMS type/category defaults. Do not substitute one route for another.
+- The product list response exposes the global total at `pagination.count`; a default page has 10 rows but that is not the total.
+- Product period values are `created_at` and `released_at`, and the backend applies them only when both dates are present.
 - `/user-group/{id}` is a composite page contract, not a single API. In practice it is backed by:
   - `retrieve_user_group`
   - `list_user_group_member`

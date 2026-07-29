@@ -119,6 +119,27 @@ These commands were chosen to match the actual current script CLI surface.
   - question: `입고 상세 보여줘`
   - command: `makestar-admin inbounds detail --purchase-order-code <po_code> --goods-received-note-id <grn_id>`
 
+## 대분류(product)
+- 최근 대분류
+  - question: `최근 대분류 10개 보여줘`
+  - command: `makestar-admin products list --size 10`
+  - note: default request is page 1, size 10, and `period_type=all`.
+- 검색어로 대분류 찾기
+  - question: `상품코드나 이름으로 대분류 찾아줘`
+  - command: `makestar-admin products list --search <title_product_code_artist_company_or_id> --size 10`
+  - note: server search covers title, product code, artist nickname, company name, and numeric product id.
+- 상품등록일 기준 대분류
+  - question: `2026-07-01부터 2026-07-31까지 등록된 대분류 보여줘`
+  - command: `makestar-admin products list --period-type created_at --start-date 2026-07-01 --end-date 2026-07-31 --size 10`
+- 발매일 기준 대분류
+  - question: `2026-08-01부터 2026-08-31까지 발매되는 대분류 보여줘`
+  - command: `makestar-admin products list --period-type released_at --start-date 2026-08-01 --end-date 2026-08-31 --size 10`
+- Terminology
+  - `product` is 대분류 and `product_event` is 상품.
+  - `reference-lookups sku-categories` is OMS SKU type/category metadata, not 대분류.
+  - Both dates are required for `created_at` and `released_at`.
+  - Use server-side `pagination.count` as total; do not mistake the current 10-row page for the global count.
+
 ## SKU / photocard OPP / event
 - 최근 SKU
   - question: `최근 SKU 10개 보여줘`

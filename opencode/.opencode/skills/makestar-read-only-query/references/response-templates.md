@@ -164,3 +164,36 @@ Use these as operator-style answer templates after running the verified scripts.
 메모
 - 이 화면은 single API가 아니라 composite page다.
 - 현재 기준 detail / balance / members / orders / deposit logs를 분리해서 읽는다.
+
+## 7) 대분류(product) 조회
+
+### Trigger
+- `최근 대분류 10개 보여줘`
+- `상품코드로 대분류 찾아줘`
+- `이번 달 발매되는 대분류 보여줘`
+
+### Recommended output
+조회 기준
+- 발매일: 2026-08-01..2026-08-31
+
+결과
+- 전체 4,319건 / 현재 페이지 10건
+- 1) ID 10949 / 앨범코드 M01267530743566900 / 이름 ... / 아티스트 ... / 공급사/제작사 ... / 발매일 ... / 담당자 ...
+- 2) ID 10948 / 앨범코드 ... / 이름 ... / 아티스트 ... / 공급사/제작사 ... / 발매일 ... / 담당자 ...
+
+관련 키
+- product_id: 10949
+- artist_id: ...
+- company_id: ...
+- manager_id: ...
+- created_at: ...
+
+메모
+- 대분류는 `product`, 상품은 `product_event`다.
+- 전체 건수는 `pagination.count`, 현재 페이지 건수는 `product_list` 길이다.
+- `created_at`/`released_at` 기간 조회에는 시작일과 종료일을 모두 전달한다.
+
+### Notes
+- 화면 visible fields인 ID, 앨범코드(전체), 이름, 아티스트, 공급사/제작사, 발매일, 담당자를 먼저 보여준다.
+- `createdAt`은 기간 조회와 후속 연결에 유용하지만 현재 목록의 visible column은 아니므로 related key로 둔다.
+- 응답의 `pagination.next`가 direct API host를 가리켜도 그 URL을 직접 따라가지 말고 CLI의 `--page`를 사용한다.

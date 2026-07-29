@@ -41,6 +41,49 @@ Use this as a fast routing sheet for read-only Makestar admin queries.
   - dimensional, volume, HS-code, and customs-description defaults when present
   - this is not 대분류(product) or a B2C/B2B display category
 
+## 대분류(product) 조회
+
+### 최근 대분류
+- Question:
+  - `최근 대분류 10개 보여줘`
+- Command:
+  - `makestar-admin products list --size 10`
+- Expected output:
+  - default page 1 / size 10 rows
+  - global total from `pagination.count` and a separate current-page row count
+  - screen-visible ID, album code, title, artist, company, release date, and manager fields
+
+### 검색어로 대분류 찾기
+- Question:
+  - `상품코드나 이름으로 대분류 찾아줘`
+- Command:
+  - `makestar-admin products list --search <title_product_code_artist_company_or_id> --size 10`
+- Expected output:
+  - rows matching title, product code, artist nickname, company name, or numeric product id
+
+### 상품등록일 범위
+- Question:
+  - `2026-07-01부터 2026-07-31까지 등록된 대분류 보여줘`
+- Command:
+  - `makestar-admin products list --period-type created_at --start-date 2026-07-01 --end-date 2026-07-31 --size 10`
+- Expected output:
+  - product rows in the selected registration-date range
+  - both dates are required
+
+### 발매일 범위
+- Question:
+  - `2026-08-01부터 2026-08-31까지 발매되는 대분류 보여줘`
+- Command:
+  - `makestar-admin products list --period-type released_at --start-date 2026-08-01 --end-date 2026-08-31 --size 10`
+- Expected output:
+  - product rows in the selected release-date range
+  - both dates are required
+
+Terminology:
+- 대분류 = `product`
+- 상품 = `product_event`
+- SKU category = OMS type/category metadata, not 대분류
+
 ## B2B 업체 찾기
 
 ### 대표 이메일로 업체 찾기
