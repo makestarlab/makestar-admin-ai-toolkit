@@ -75,7 +75,7 @@ codex
 
 Generated Hermes skills are exported under `hermes/skills/makestar/`.
 
-Current status: `pre-validation`.
+Current status: `install-supported`.
 
 Install from a local clone of this public toolkit repository:
 
@@ -92,7 +92,7 @@ python installers/hermes/install.py --backup
 
 Generated OpenCode skills are exported under `opencode/.opencode/skills/`. Optional OpenCode guide/prompt convenience assets may also be present under `opencode/ai-guides/opencode/`, but skills remain the primary installable surface.
 
-Current status: `pre-validation`.
+Current status: `install-supported`.
 
 Install from a local clone of this public toolkit repository into the current project:
 

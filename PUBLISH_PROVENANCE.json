@@ -19,13 +19,13 @@
     },
     {
       "path": "README.md",
-      "sha256": "04093695a440945d248e19ba8d98113285e514eef924b29122f7ef8e80fc1db5",
-      "size_bytes": 4239
+      "sha256": "8f14f4f0f035c4397f128d76005e8c3998b9a61b89393c1638e1f9b821f183f5",
+      "size_bytes": 4245
     },
     {
       "path": "TOOL_SUPPORT_STATUS.json",
-      "sha256": "bcc9b3d0e9cb03070b3e701e4bb9cdf35410a538bdb18e13374bc5ca8e6de1cb",
-      "size_bytes": 2187
+      "sha256": "a65491f74aa3bd3d767986d4008400a372d06b5c63b47b3a36d7020454a28818",
+      "size_bytes": 2193
     },
     {
       "path": "cowork/cowork-cli-bootstrap.md",
@@ -337,7 +337,7 @@
         "installers/hermes/install.py"
       ],
       "artifact_surface": "skills",
-      "support_status": "pre-validation",
+      "support_status": "install-supported",
       "install_command_status": "entrypoint-available-command-withheld"
     },
     "opencode": {
@@ -349,7 +349,7 @@
         "installers/opencode/install.py"
       ],
       "artifact_surface": "skills-first",
-      "support_status": "pre-validation",
+      "support_status": "install-supported",
       "install_command_status": "entrypoint-available-command-withheld"
     }
   }

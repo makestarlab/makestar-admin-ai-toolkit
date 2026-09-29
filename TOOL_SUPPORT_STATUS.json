@@ -38,7 +38,7 @@
         "installers/hermes/install.py"
       ],
       "artifact_surface": "skills",
-      "support_status": "pre-validation",
+      "support_status": "install-supported",
       "install_command_status": "entrypoint-available-command-withheld"
     },
     "opencode": {
@@ -50,7 +50,7 @@
         "installers/opencode/install.py"
       ],
       "artifact_surface": "skills-first",
-      "support_status": "pre-validation",
+      "support_status": "install-supported",
       "install_command_status": "entrypoint-available-command-withheld"
     }
   }
