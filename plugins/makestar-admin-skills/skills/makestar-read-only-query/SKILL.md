@@ -1,7 +1,7 @@
 ---
 name: makestar-read-only-query
 description: Fast routing skill for read-only Makestar admin queries using verified resource scripts.
-version: 0.1.7
+version: 0.1.9
 author: Makestar Admin Contracts
 license: MIT
 ---
@@ -14,7 +14,7 @@ This is the thin operator-facing layer built on top of the broader `makestar-adm
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.17.
+Required: `makestar-admin` >=0.2.18.
 Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
 Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
 Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
@@ -115,6 +115,8 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   - `makestar-admin orders list --recipient-name <name> --size 10`
   - `makestar-admin orders list --shipping-status 0 --size 10`
   - `makestar-admin orders detail <order_no>`
+  - `makestar-admin logistics intl-shipment-info <order_no>`
+    - source-confirmed/browser-pending; default output uses canonical fields and `--json` preserves legacy aliases
 - 구매/입고/ASN
   - `makestar-admin purchase-orders list --size 10`
   - `makestar-admin purchase-orders list --purchase-order-code <po_code> --size 10`
@@ -146,6 +148,9 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   - `makestar-admin product-contents list <product_id>`
 
 ## Notes
+- Chinese language keys are `zh` (Simplified) and optional `zh-Hant` (Traditional). Do not rename the latter to `zhTW` or `zh-TW`.
+- For Traditional Chinese product/option names, use `makestar-admin product-events detail <event_id> --raw --validate-schema`; summary output may only show Korean. Preserve the difference between a missing language key and an empty string.
+- Commerce product/content localized names are separate from OMS `skuName`, which remains a single string. Do not assume every multilingual field supports Traditional Chinese.
 - Reference lookup `--search` and `--limit` are local filters; use `--raw` for the full unfiltered GET response.
 - `/user-group/{id}` is not a single API. Treat it as a composite page.
 - Deposit log detail currently reuses the deposit-log list row as the read model; do not assume a separate detail GET exists.
@@ -155,6 +160,7 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 - 대분류 date filters use `all`, `created_at`, or `released_at`. Both `--start-date` and `--end-date` are required for an effective `created_at`/`released_at` range.
 - 상품/product-event date filters use `all`, `created_at`, `sales_start_at`, or `sales_end_at`. For "판매 종료일/이벤트 종료기간" searches, pass `--period-type sales_end_at`; never pass UI/model camelCase keys such as `salesEnd`, `salesStart`, or `createdAt` as `period_type`.
 - For 재고할당/배송준비전 주문 worklists, use `makestar-admin orders list --stock-allocation-needed`. It applies `order_status=2`, `product_event_type=product`, `payment_status=CONFIRMED`, and `delivery_requested=false`; this is read-only and does not mark rows 배송준비완료.
+- International shipment info is source-confirmed/browser-pending at OMS `8805fd0`; retain raw legacy aliases until browser traffic and consumers are checked.
 
 ## References
 - `references/routes.md`

@@ -1,7 +1,7 @@
 ---
 name: makestar-admin-resource-scripts
 description: Run Makestar admin low-level resource scripts consistently across admin and OMS paths.
-version: 0.2.5
+version: 0.2.7
 author: Makestar Admin Contracts
 license: MIT
 ---
@@ -12,7 +12,7 @@ Use this skill to run the low-level resource probes without inventing new reques
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.17.
+Required: `makestar-admin` >=0.2.18.
 Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
 Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
 Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
@@ -28,6 +28,8 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 <!-- /managed:cli-preflight -->
 
 ## Rules
+- Chinese language keys are `zh` (Simplified) and optional `zh-Hant` (Traditional), not `zhTW` or `zh-TW`. Preserve missing keys and empty strings as distinct values.
+- To inspect Traditional Chinese product/option names, use `makestar-admin product-events detail <event_id> --raw --validate-schema`; default summaries may only show Korean. OMS `skuName` is still a single string, distinct from Commerce localized product/content names.
 - Prefer browser-confirmed request shapes.
 - Keep admin and OMS resource families separate.
 - If response meaning is unclear, inspect frontend first.
@@ -86,6 +88,8 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 - `makestar-admin orders list --stock-allocation-needed --size 10`
 - `makestar-admin orders detail <order_no>`
 - `makestar-admin orders get --ids <order_no1>,<order_no2>`
+- `makestar-admin logistics intl-shipment-info <order_no>`
+  - source-confirmed/browser-pending read contract; default output exposes canonical order, line-item, and SKU fields while `--json` preserves legacy aliases
 - `makestar-admin purchase-orders list --size 10`
 - `makestar-admin purchase-orders detail <purchase_order_code>`
 - `makestar-admin purchase-requests list --size 10`
@@ -136,6 +140,9 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   - keep this read-only; 배송준비완료 상태 변경은 통합어드민에서 운영자가 수행하는 별도 write action
 - "주문번호 C260418201844345M1 상세"
   - `makestar-admin orders detail C260418201844345M1`
+- "주문번호의 국제배송 정보"
+  - `makestar-admin logistics intl-shipment-info <order_no>`
+  - source-confirmed/browser-pending; use `--json` when legacy aliases such as `odrNo`, `pdId`, or `pdPaidAmt` are required
 - "특정 이벤트 코드 주문만 보고 싶다"
   - `makestar-admin orders list --product-event-code P_10103_BBGIRLS_3 --size 10`
 - "B2B 주문 쪽을 보고 싶다"
@@ -246,6 +253,7 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   - `distributorFinalOrderDeadline` = 유통사 최종 발주 마감일 / Distributor final order deadline
   - Current live SKU search/list responses do not expose these fields; use `skus stock-detail` for them.
 - The live regression harness treats this as API drift: raw detail `resData.skuInfo` must contain both distributor deadline keys, while sampled raw search/list `resData.skuList[]` rows must not contain them. `lastOrderClosingDate` is legacy DB-mirror documentation only, not a current live API field requirement.
+- International shipment info is source-confirmed/browser-pending at OMS `8805fd0`: canonical names are additive and legacy aliases remain in raw JSON. Do not remove aliases until browser traffic and consumers are checked.
 - If the current `skus_stock_detail` script summary does not print both values, inspect the raw response or query the endpoint directly with the current browser-derived token.
 - When the shell token is missing, load `makestar-admin-auth-token` and stage env vars with the Bash/Git Bash or PowerShell command from that skill; use browser XHR/fetch extraction only as fallback.
 

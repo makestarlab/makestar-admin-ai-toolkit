@@ -211,6 +211,15 @@ Terminology:
   - order detail summary
   - note whether it came from OMS-first path or admin fallback behavior if the script exposes that nuance
 
+### 국제배송 정보
+- Question:
+  - `주문번호의 국제배송 정보 보여줘`
+- Command:
+  - `makestar-admin logistics intl-shipment-info <order_no>`
+- Expected output:
+  - canonical order, line-item, and SKU fields
+  - use `--json` only when source-backed legacy aliases are needed; browser confirmation is pending
+
 ### 특정 이벤트 코드 주문만
 - Question:
   - `이벤트 코드 P_10103_BBGIRLS_3 주문만 보여줘`

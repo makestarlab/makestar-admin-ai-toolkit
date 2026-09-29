@@ -89,6 +89,10 @@ These commands were chosen to match the actual current script CLI surface.
 - 주문 상세
   - question: `주문번호 C260418201844345M1 상세 보여줘`
   - command: `makestar-admin orders detail <order_no>`
+- 국제배송 정보
+  - question: `주문번호의 국제배송 정보 보여줘`
+  - command: `makestar-admin logistics intl-shipment-info <order_no>`
+  - note: source-confirmed/browser-pending; canonical fields are the default and `--json` keeps legacy aliases.
 
 ## Purchase / inbound / ASN
 - 최근 발주
