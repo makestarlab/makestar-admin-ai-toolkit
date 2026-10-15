@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "source_repo": "makestarlab/makestar-admin-contracts",
-  "source_commit": "3fae6a6d12d2e878f05ab5bc46caaceaba618998",
-  "source_workflow_run": "38712989861",
+  "source_commit": "03a661c41c873b373d94ed4bdcbdfbfe755b2ee2",
+  "source_workflow_run": "38714060080",
   "version": "0.3.0",
-  "export_timestamp": "2026-10-15T09:27:19.886530+00:00",
+  "export_timestamp": "2026-10-15T09:36:02.354345+00:00",
   "artifact_count": 63,
   "artifact_digests": [
     {
