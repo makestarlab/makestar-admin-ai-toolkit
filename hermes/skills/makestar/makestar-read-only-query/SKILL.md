@@ -14,7 +14,7 @@ This is the thin operator-facing layer built on top of the broader `makestar-adm
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.18.
+Required: `makestar-admin` >=0.3.0.
 Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
 Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
 Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
@@ -83,6 +83,22 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
   4. contract nuance if important (for example OMS fallback, row-backed detail, composite page)
 
 ## Fast routes
+- 배송그룹 조회·상태 (CLI 0.3.0+, source-confirmed 2026-10-15; live verification pending)
+  - `makestar-admin delivery-groups list --commerce-order-no <user_order_number> --json`
+  - `makestar-admin delivery-groups detail <DG-number> --json`
+  - `makestar-admin delivery-groups status <user_order_number> --json`
+  - `makestar-admin delivery-groups snapshot <user_order_number> --json`
+  - `makestar-admin delivery-groups allocations <DG-number> --include-released --json`
+  - `makestar-admin delivery-groups history <DG-number> --json`
+  - `makestar-admin releases list --delivery-group-no <DG-number> --include-events --json`
+  - `makestar-admin releases detail <REL-number> --json`
+  - `makestar-admin delivery-parcels list --delivery-group-no <DG-number> --json`
+  - `makestar-admin delivery-parcels detail <PAR-number> --json`
+  - `makestar-admin orders list --include-delivery-details --size 100 --json`
+  - Allocation reservation, Release `CREATED`, WMS `SENT`, shipment `CONFIRMED`, and Parcel `DELIVERED` are separate. UI 설정중/확정 is not an execution predicate. `SEND_UNKNOWN`/`CANCEL_REQUESTED` require readback; no automatic retry.
+  - `deliveryGroupCreationPending` and unknown (`null`) state must remain visible. Group lists have no order-level pagination; Release/Parcel lists return one zero-based page, at most 100 rows.
+  - Preserve group `managementInstruction`, `fulfillmentRevision`, `compositionRevision`, allowed actions and blocked reasons. Do not infer every sibling has shipped from order status.
+  - `delivery-groups cancellation-options` plus `cancellation-shipping-quote --body-file` reads cancellation eligibility/quotes; quote amounts are decimal strings and do not execute a refund.
 - 등록 기준정보
   - `makestar-admin reference-lookups artists --search <artist_name> --limit 10`
   - `makestar-admin reference-lookups manufacturers --search <company_name> --limit 10`
@@ -160,7 +176,7 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 - 대분류 date filters use `all`, `created_at`, or `released_at`. Both `--start-date` and `--end-date` are required for an effective `created_at`/`released_at` range.
 - 상품/product-event date filters use `all`, `created_at`, `sales_start_at`, or `sales_end_at`. For "판매 종료일/이벤트 종료기간" searches, pass `--period-type sales_end_at`; never pass UI/model camelCase keys such as `salesEnd`, `salesStart`, or `createdAt` as `period_type`.
 - For 재고할당/배송준비전 주문 worklists, use `makestar-admin orders list --stock-allocation-needed`. It applies `order_status=2`, `product_event_type=product`, `payment_status=CONFIRMED`, and `delivery_requested=false`; this is read-only and does not mark rows 배송준비완료.
-- International shipment info is source-confirmed/browser-pending at OMS `8805fd0`; retain raw legacy aliases until browser traffic and consumers are checked.
+- International shipment info was refreshed from OMS `2782aa246` on 2026-10-15 and remains browser/live-pending. The same query accepts eligible DG numbers. Preserve nullable originCountryCode/merchantPid/nonStandardPid/standardPid/nsPidSource and raw legacy aliases.
 
 ## References
 - `references/routes.md`

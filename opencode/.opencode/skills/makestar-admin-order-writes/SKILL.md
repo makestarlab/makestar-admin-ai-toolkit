@@ -1,6 +1,6 @@
 ---
 name: makestar-admin-order-writes
-description: Safely run verified Stage-only stock allocation, shipping request, and delivery-prepared order writes.
+description: Run Stage-only delivery-group allocation, composition, preparation, hold, cancellation and Release execution; distinguish these from legacy order-scoped writes.
 version: 0.1.0
 author: Makestar Admin Contracts
 license: MIT
@@ -8,11 +8,20 @@ license: MIT
 
 # Makestar Admin Order Writes
 
-Use this skill only for the four verified order write workflows: stock allocation, allocation reset, shipping request create/cancel, and delivery-prepared set/unset.
+Use this skill for delivery-group and Release operations, plus the four existing order write workflows. Delivery-group contracts are source-confirmed on 2026-10-15 and locally tested; live Stage round trips remain unverified. Read [delivery-groups](references/delivery-groups.md) before any group operation.
+
+## Select the correct execution scope
+
+- `orders allocate`, `orders reset-allocation`, and `orders request-shipping` accept an original `user_order_number`. Current server compatibility routing may operate on multiple eligible groups of that order. They cannot select just one group.
+- `orders set-delivery-prepared` applies to LEGACY orders only. The server rejects managed delivery-group orders; use `delivery-groups set-delivery-prepared`.
+- Never substitute a `DG-`, `REL-`, or `PAR-` value for an order number. The order write commands reject these prefixes locally.
+- Group actions use explicit `deliveryGroupNos`, revisions and `--body-file`. Release create uses group numbers plus `idempotencyKey`; send/cancel/retry use `releaseNos`. Do not generate a new key or refresh revisions to blindly retry an ambiguous write.
+- Show the offline dry-run and exact targets before executing with existing explicit authorization. Production writes remain unavailable. Read-only POST previews/quotes do contact the selected environment without write gates.
+- Use `delivery-groups status <commerce_order_no> --env stage --json` and relevant allocation/Release ledgers for readback. `verified=false` remains until independent readback; an accepted response alone is insufficient.
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.18.
+Required: `makestar-admin` >=0.3.0.
 Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
 Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
 Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
@@ -39,7 +48,7 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 
 ## Identifier contract
 
-The positional identifier for all four commands is Admin `user_order_number`.
+The positional identifier for all four `orders` commands is Admin `user_order_number`.
 
 - OMS `orderNo` / `orderNoList` is the same string as Admin `user_order_number`.
 - The Admin delivery-prepared payload calls the array `order_number_list`; it still contains `user_order_number` values.
@@ -80,7 +89,7 @@ Before allocation, record the dedicated fixture baseline: eligible OMS order sta
 3. Run `makestar-admin orders reset-allocation <user_order_number>` only for state that readback shows must be reset.
 4. Verify allocation/WMS markers are removed and exact stock quantities match the recorded baseline.
 
-Allocation and reset summaries deliberately remain `verified=false`; command success is not final-state verification. The synchronous allocation batch is transactional for an NCM transport failure or business rejection, but an eligibility response can still contain per-order success and failure rows. Drive reset and recovery from readback, not only from the exit code or response list.
+Allocation and reset summaries deliberately remain `verified=false`; command success is not final-state verification. The legacy synchronous allocation path has a transaction for NCM transport/business failure, but managed routing has different transaction/projection boundaries and can retain per-order partial results. Do not assume whole-batch rollback for managed groups. Drive reset and recovery from readback, not only from the exit code or response list.
 
 ## Shipping-request round trip
 

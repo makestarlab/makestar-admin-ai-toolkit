@@ -12,7 +12,7 @@ Use this skill to run the low-level resource probes without inventing new reques
 
 ## CLI preflight
 <!-- managed:cli-preflight -->
-Required: `makestar-admin` >=0.2.18.
+Required: `makestar-admin` >=0.3.0.
 Cowork/sandboxed Linux agents: before any CLI action, resolve or install the sandbox CLI with the generated package helper (`cowork/cowork-cli-bootstrap.sh` in AI Toolkit exports, or `references/cowork-cli-bootstrap.sh` when that helper is bundled next to these instructions), then use the returned executable path and its verification evidence. Do not use host installers inside the sandbox.
 Host shells: use the normal `makestar-admin` on PATH and keep macOS Homebrew, Windows winget/MSI, Linux `install.sh`, or public release archive install guidance available for operator setup.
 Before the first CLI-dependent action, run `makestar-admin --version` (or the Cowork helper returned executable with `--version`), compare it with the required range, then print exactly one status line:
@@ -28,6 +28,10 @@ Installed skills/plugins do not bundle the CLI binary. Do not require repository
 <!-- /managed:cli-preflight -->
 
 ## Rules
+- For delivery-group reads use `delivery-groups list/detail/history/allocations/snapshot/status`, `releases list/detail`, and `delivery-parcels list/detail` (CLI >=0.3.0). Status takes an original order number and returns independent group allocation, WMS transmission, shipment confirmation and delivery completion. Use `--json` to retain revisions, allowed actions and blocked reasons.
+- `orders list --include-delivery-details --size 100 --json` requests group details but retains order pagination. `orders` mutation commands are original-order compatibility operations, not selected-group operations. Managed preparation requires `delivery-groups set-delivery-prepared` through the order-writes skill.
+- Read-only POST commands `delivery-groups manual-preview`, `delivery-groups cancellation-shipping-quote`, and `releases preview` accept `--body-file`. They perform real computation against the selected environment; an offline mutation dry-run does not.
+- International shipment info accepts eligible DG numbers through `orderNo`. The summary/schema include nullable `originCountryCode`, `merchantPid`, `nonStandardPid`, `standardPid`, `nsPidSource`; keep server-resolved HS codes. Source-confirmed at OMS `2782aa246`, 2026-10-15; live verification remains pending.
 - Chinese language keys are `zh` (Simplified) and optional `zh-Hant` (Traditional), not `zhTW` or `zh-TW`. Preserve missing keys and empty strings as distinct values.
 - To inspect Traditional Chinese product/option names, use `makestar-admin product-events detail <event_id> --raw --validate-schema`; default summaries may only show Korean. OMS `skuName` is still a single string, distinct from Commerce localized product/content names.
 - Prefer browser-confirmed request shapes.

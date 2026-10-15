@@ -6,8 +6,8 @@
   "plugins": [
     {
       "name": "makestar-admin-skills",
-      "version": "0.2.19",
-      "supported_cli_requirement": ">=0.2.18",
+      "version": "0.3.0",
+      "supported_cli_requirement": ">=0.3.0",
       "source": {
         "source": "local",
         "path": "./plugins/makestar-admin-skills"
